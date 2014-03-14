@@ -1,0 +1,36 @@
+{
+	"name": "dr-svg-sprites",
+	"description": "Create SVG sprites with PNG fallbacks at needed sizes",
+	"version": "0.5.5",
+	"homepage": "",
+	"author": {
+		"name": "rasmusfl0e",
+		"email": "rasmusfl0e@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/drdk/dr-svg-sprites.git"
+	},
+	"bugs": {
+		"url": "https://github.com/drdk/dr-svg-sprites/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "/blob/master/LICENSE-MIT"
+		}
+	],
+	"main": "index.js",
+	"engines": {
+		"node": ">= 0.8.0"
+	},
+	"dependencies": {
+		"lodash": "~1.3.1",
+		"async": "*",
+		"phantomjs": "*",
+		"svgo": "*"
+	},
+	"keywords": [
+		"svg", "sprites"
+	]
+}
