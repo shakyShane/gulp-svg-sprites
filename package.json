@@ -1,36 +1,40 @@
 {
-	"name": "dr-svg-sprites",
-	"description": "Create SVG sprites with PNG fallbacks at needed sizes",
-	"version": "0.5.5",
-	"homepage": "",
-	"author": {
-		"name": "rasmusfl0e",
-		"email": "rasmusfl0e@gmail.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/drdk/dr-svg-sprites.git"
-	},
-	"bugs": {
-		"url": "https://github.com/drdk/dr-svg-sprites/issues"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "/blob/master/LICENSE-MIT"
-		}
-	],
-	"main": "index.js",
-	"engines": {
-		"node": ">= 0.8.0"
-	},
-	"dependencies": {
-		"lodash": "~1.3.1",
-		"async": "*",
-		"phantomjs": "*",
-		"svgo": "*"
-	},
-	"keywords": [
-		"svg", "sprites"
-	]
+  "name": "gulp-svg-sprites",
+  "description": "Create SVG sprites with PNG fallbacks",
+  "version": "0.0.1",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shakyshane/gulp-svg-sprites.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shakyshane/gulp-svg-sprites/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "phantomjs": "*",
+    "svgo": "*",
+    "through2": "^0.4.1",
+    "vinyl": "^0.2.3",
+    "gulp-util": "^2.2.14",
+    "svg2png": "^1.0.1"
+  },
+  "keywords": [
+    "svg",
+    "sprites",
+    "gulp-plugin"
+  ],
+  "devDependencies": {
+    "vinyl-fs": "^0.1.0"
+  }
 }

@@ -10,3 +10,5 @@ tmp
 ehthumbs.db
 Thumbs.db
 .idea
+test/fixtures/css
+test/fixtures/sprites
