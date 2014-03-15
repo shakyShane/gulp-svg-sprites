@@ -4,6 +4,7 @@ var utils           = require("../../../lib/utils");
 var roundUpToUnit   = utils.roundUpToUnit;
 var joinName        = utils.joinName;
 var swapFileName    = utils.swapFileName;
+
 var assert          = require("chai").assert;
 
 describe("String Utils:", function () {
