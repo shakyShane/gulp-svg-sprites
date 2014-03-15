@@ -1,6 +1,7 @@
-var svgutil  = require("./lib/svgutil");
-var cssutil  = require("./lib/cssutil");
-var utils    = require("./lib/utils");
+var svgutil   = require("./lib/svg-utils");
+var cssRender = require("./lib/css-render");
+var utils     = require("./lib/utils");
+
 var _        = require("lodash");
 var gutil    = require("gulp-util");
 var path     = require("path");
@@ -11,12 +12,12 @@ var svg2png  = require("svg2png");
 var PLUGIN_NAME = "gulp-svg-sprites";
 
 var defaults = {
-    prefix: "",
-    cssSuffix: "css",
+    classNamePrefix: "",
     classNameSuffix: "icon",
+    cssFileType: ".css",
     refSize: 26,
-    unit: 13,
-    cssPath: "css/sprites.css",
+    unit: 0,
+    cssPath: "css/sprites",
     svgImg:  "sprites/svg-sprite.svg",
     svgPath: "../sprites/svg-sprite.svg",
     pngPath: "../sprites/png-sprite.png"
@@ -50,7 +51,7 @@ module.exports.svg = function (config) {
     }, function (cb) {
 
         var combined = svgutil.buildSVGSprite(config.classNameSuffix, tasks, config);
-        var cssData  = cssutil.render(combined.spriteData, config);
+        var cssData  = cssRender.render(combined.spriteData, config);
         this.push(new File({
             cwd:  "./",
             base: "./",
@@ -60,7 +61,7 @@ module.exports.svg = function (config) {
         this.push(new File({
             cwd:  "./",
             base: "./",
-            path: config.cssPath,
+            path: config.cssPath + config.cssFileType,
             contents: new Buffer(cssData)
         }));
         cb(null);
