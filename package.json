@@ -16,6 +16,9 @@
       "url": "/blob/master/LICENSE-MIT"
     }
   ],
+  "scripts": {
+    "test": "mocha --recursive test/specs"
+  },
   "main": "index.js",
   "engines": {
     "node": ">= 0.8.0"
@@ -35,6 +38,12 @@
     "gulp-plugin"
   ],
   "devDependencies": {
-    "vinyl-fs": "^0.1.0"
+    "vinyl-fs": "^0.1.0",
+    "gulp": "~3.5.2",
+    "mocha": "~1.18.0",
+    "gulp-jshint": "~1.4.0",
+    "chai": "~1.9.0",
+    "sinon": "~1.8.2",
+    "gulp-contribs": "0.0.2"
   }
 }

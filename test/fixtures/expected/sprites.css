@@ -1,0 +1,23 @@
+
+.facebook-icon {
+	width: 100px;
+	height: 70px;
+	background-position: -0px 0;
+}
+
+.unicorn-icon {
+	width: 300px;
+	height: 200px;
+	background-position: -117px 0;
+}
+
+.no-svg .facebook-icon,
+.no-svg .unicorn-icon {
+	background-image: url(../sprites/png-sprite.png);
+	background-size: 442px 200px;
+}
+
+.facebook-icon,
+.unicorn-icon {
+	background-image: url(../sprites/svg-sprite.svg);
+}

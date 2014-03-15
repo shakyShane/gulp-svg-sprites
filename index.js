@@ -34,18 +34,22 @@ function error(context, msg) {
 /**
  * @returns {*}
  */
-module.exports.svgStream = function (config) {
+module.exports.svg = function (config) {
 
     var tasks = [];
-    config = _.assign(defaults, config);
+    config = _.assign(defaults, config || {});
 
     return through2.obj(function (file, enc, cb) {
+
         var contents = file.contents.toString();
+
         svgutil.addSvgFile(contents, file, tasks, function () {
-            cb();
+            cb(null, file);
         }.bind(this));
+
     }, function (cb) {
-        var combined = svgutil.buildSVGSprite("shane", tasks, config);
+
+        var combined = svgutil.buildSVGSprite(config.classNameSuffix, tasks, config);
         var cssData  = cssutil.render(combined.spriteData, config);
         this.push(new File({
             cwd:  "./",
@@ -66,7 +70,7 @@ module.exports.svgStream = function (config) {
 /**
  * Create the PNG Fallback
  */
-module.exports.createPng = function () {
+module.exports.png = function () {
     return through2.obj(function (file, enc, cb) {
         var stream = this;
         if (path.extname(file.path) === ".svg") {
