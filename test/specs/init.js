@@ -12,11 +12,15 @@ describe("Creating SVG Spritesheets", function () {
     before(function (done) {
 
         stream = svgSprites.svg();
-        expected = ["unicorn.svg", "facebook.svg", "sprites/svg-sprite.svg", "css/sprites.css"];
+        expected = ["sprites/svg-sprite.svg", "css/sprites.css"];
         actual   = {};
 
         stream.on("data", function (file) {
-            actual[file.path] = file.contents.toString();
+            if (typeof file === "string") {
+                actual[file] = null;
+            } else {
+                actual[file.path] = file.contents.toString();
+            }
         }).on("end", function () {
             done();
         });

@@ -44,7 +44,7 @@ module.exports.svg = function (config) {
         var contents = file.contents.toString();
 
         svgutil.addSvgFile(contents, file, tasks, function () {
-            cb(null, file);
+            cb(null);
         }.bind(this));
 
     }, function (cb) {
