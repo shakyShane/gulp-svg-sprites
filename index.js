@@ -12,8 +12,7 @@ var svg2png  = require("svg2png");
 var PLUGIN_NAME = "gulp-svg-sprites";
 
 var defaults = {
-    classNamePrefix: "",
-    classNameSuffix: "icon",
+    className: ".%f-icon",
     cssFileType: ".css",
     refSize: 26,
     unit: 0,

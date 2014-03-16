@@ -10,17 +10,55 @@ var assert         = require("chai").assert;
 
 describe("makeClassName(): ", function () {
     it("should create class names", function () {
-        var actual = utils.makeClassName("facebook", "", "icon");
+        var template = ".%f-icon";
+        var name     = "facebook";
+        var actual   = utils.makeClassName(template, name);
         var expected =  ".facebook-icon";
         assert.equal(actual, expected);
     });
     it("should create class names", function () {
-        var actual = utils.makeClassName("12345", "", "icon");
-        var expected =  "._12345-icon";
+        var template = ".%f";
+        var name     = "facebook";
+        var actual   = utils.makeClassName(template, name);
+        var expected =  ".facebook";
         assert.equal(actual, expected);
     });
-    it("should create class names", function () {
-        var actual = utils.makeClassName("facebook", "svg", "icon");
+    it("should create class names from a callback", function () {
+        var template = function (name) {
+            return name;
+        };
+        var name     = "facebook";
+        var actual   = utils.makeClassName(template, name);
+        var expected =  ".facebook";
+        assert.equal(actual, expected);
+    });
+    it("should create class names from a callback", function () {
+        var template = function (name) {
+            return name + "-icon";
+        };
+        var name     = "facebook";
+        var actual   = utils.makeClassName(template, name);
+        var expected =  ".facebook-icon";
+        assert.equal(actual, expected);
+    });
+    it("should create class names from a callback", function () {
+        var template = function (name) {
+            return name + "-icon";
+        };
+        var name     = "facebook";
+        var actual   = utils.makeClassName(template, name);
+        var expected =  ".facebook-icon";
+        assert.equal(actual, expected);
+    });
+    it("should create class names from a callback", function () {
+        var config = {
+            prefix: "svg"
+        };
+        var template = function (name, config) {
+            return config.prefix + "-"  + name + "-icon";
+        };
+        var name     = "facebook";
+        var actual   = utils.makeClassName(template, name, config);
         var expected =  ".svg-facebook-icon";
         assert.equal(actual, expected);
     });
