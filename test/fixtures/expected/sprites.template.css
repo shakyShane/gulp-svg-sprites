@@ -1,23 +1,23 @@
 
-.facebook {
+.svg-facebook-icon {
 	width: 100px;
 	height: 70px;
 	background-position: -0px 0;
 }
 
-.unicorn {
+.svg-unicorn-icon {
 	width: 300px;
 	height: 200px;
 	background-position: -100px 0;
 }
 
-.no-svg .facebook,
-.no-svg .unicorn {
+.no-svg .svg-facebook-icon,
+.no-svg .svg-unicorn-icon {
 	background-image: url("../sprites/png-sprite.png");
 	background-size: 400px 200px;
 }
 
-.facebook,
-.unicorn {
+.svg-facebook-icon,
+.svg-unicorn-icon {
 	background-image: url("../sprites/svg-sprite.svg");
 }

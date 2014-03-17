@@ -9,7 +9,13 @@ var paths = {
     svgDest: "./test/fixtures"
 };
 
+var config = {
+    className: function (file) {
+        return ".svg-" + file;
+    }
+};
+
 fs.src(paths.svgSrc)
-    .pipe(svg())
+    .pipe(svg(config))
     .pipe(fs.dest(paths.svgDest))
     .pipe(png());

@@ -6,15 +6,19 @@ var assert      = require("chai").assert;
 var fs          = require("fs");
 var File        = require("vinyl");
 
-var expectedCss = fs.readFileSync(process.cwd() + "/test/fixtures/expected/sprites.css", "utf-8");
+var expectedCss = fs.readFileSync(process.cwd() + "/test/fixtures/expected/sprites.template.css", "utf-8");
 
 describe("Creating SVG Spritesheets", function () {
 
-    var stream, expected, actual;
+    var stream, expected, actual, config;
 
     before(function (done) {
 
-        stream = svgSprites.svg();
+        config = {
+            className: ".svg-%f-icon"
+        };
+
+        stream = svgSprites.svg(config);
         expected = ["sprites/svg-sprite.svg", "css/sprites.css"];
         actual   = {};
 
@@ -54,6 +58,6 @@ describe("Creating SVG Spritesheets", function () {
         assert.deepEqual(Object.keys(actual), expected);
     });
     it("should render CSS correctly", function () {
-//        assert.deepEqual(expectedCss, actual["css/sprites.css"]);
+        assert.deepEqual(expectedCss, actual["css/sprites.css"]);
     });
 });

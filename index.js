@@ -12,14 +12,13 @@ var svg2png  = require("svg2png");
 var PLUGIN_NAME = "gulp-svg-sprites";
 
 var defaults = {
-    className: ".%f-icon",
-    cssFileType: ".css",
+    className: ".%f",
+    cssFile:  "css/sprites.css",
+    svgFile:  "sprites/svg-sprite.svg",
+    svgPath: "../%f",
+    pngPath: "../%f",
     refSize: 26,
-    unit: 0,
-    cssPath: "css/sprites",
-    svgImg:  "sprites/svg-sprite.svg",
-    svgPath: "../sprites/svg-sprite.svg",
-    pngPath: "../sprites/png-sprite.png"
+    unit: 0
 };
 
 /**
@@ -37,7 +36,7 @@ function error(context, msg) {
 module.exports.svg = function (config) {
 
     var tasks = [];
-    config = _.assign(defaults, config || {});
+    config = _.merge(defaults, config || {});
 
     return through2.obj(function (file, enc, cb) {
 
@@ -54,13 +53,13 @@ module.exports.svg = function (config) {
         this.push(new File({
             cwd:  "./",
             base: "./",
-            path: config.svgImg,
+            path: config.svgFile,
             contents: new Buffer(combined.content)
         }));
         this.push(new File({
             cwd:  "./",
             base: "./",
-            path: config.cssPath + config.cssFileType,
+            path: config.cssFile,
             contents: new Buffer(cssData)
         }));
         cb(null);
