@@ -11,6 +11,7 @@ Install it locally to your project.
 `npm install gulp-svg-sprites`
 
 ## Example, using defaults
+There are more [examples here](https://github.com/shakyShane/gulp-svg-sprites/tree/master/examples).
 
 ```js
 var gulp = require('gulp');
