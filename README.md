@@ -2,6 +2,9 @@
 
 Create SVG sprites with PNG fallbacks
 
+**Notice** - This is a new project with a deliberately minimal feature set. If there's something missing that would help you though, post an issue
+and we'll try to get it implemented.
+
 ## Usage
 Install it locally to your project.
 
