@@ -1,7 +1,7 @@
 {
   "name": "gulp-svg-sprites",
   "description": "Create SVG sprites with PNG fallbacks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "",
   "repository": {
     "type": "git",
@@ -30,8 +30,7 @@
     "through2": "^0.4.1",
     "vinyl": "^0.2.3",
     "gulp-util": "^2.2.14",
-    "svg2png": "^1.0.1",
-    "cl-strings": "0.0.5"
+    "svg2png": "^1.0.1"
   },
   "keywords": [
     "svg",
