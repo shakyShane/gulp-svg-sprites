@@ -1,11 +1,8 @@
 "use strict";
 
 var utils          = require("../../../lib/css-utils");
-var substitute     = utils.substitute;
 var makePath       = utils.makePath;
 var cleanClassName = utils.cleanClassName;
-
-var templates      = require("../../../lib/css-render").templates;
 
 var assert         = require("chai").assert;
 
@@ -103,27 +100,6 @@ describe("makePath(): ", function () {
         var svgFile  = "sprites/svg-sprite.svg";
         var actual   = makePath(template, svgFile);
         var expected = "dist/svg-sprite.svg";
-        assert.equal(actual, expected);
-    });
-});
-
-describe("substitute(): CSS ELEMENT", function () {
-    it("can render", function () {
-        var template = "{:selector:}";
-        var actual   = substitute(template, {selector:"shane"});
-        var expected = "shane";
-        assert.equal(actual, expected);
-    });
-    it("can render", function () {
-        var template = templates.cssElement;
-        var params = {
-            selector: ".shane",
-            width: 12,
-            height: 13,
-            x: 54
-        };
-        var actual   = substitute(template, params);
-        var expected = "\n.shane {\n\twidth: 12px;\n\theight: 13px;\n\tbackground-position: -54px 0;\n}\n";
         assert.equal(actual, expected);
     });
 });

@@ -12,7 +12,8 @@ var paths = {
 var config = {
     className: function (file) {
         return ".svg-" + file;
-    }
+    },
+    unit: 30
 };
 
 fs.src(paths.svgSrc)

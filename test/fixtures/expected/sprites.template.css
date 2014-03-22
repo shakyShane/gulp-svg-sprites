@@ -13,11 +13,13 @@
 
 .no-svg .svg-facebook-icon,
 .no-svg .svg-unicorn-icon {
+	display: inline-block;
 	background-image: url("../sprites/png-sprite.png");
 	background-size: 400px 200px;
 }
 
 .svg-facebook-icon,
 .svg-unicorn-icon {
+	display: inline-block;
 	background-image: url("../sprites/svg-sprite.svg");
 }

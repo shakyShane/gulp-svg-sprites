@@ -1,5 +1,6 @@
 var svgutil   = require("./lib/svg-utils");
 var cssRender = require("./lib/css-render");
+var preview   = require("./lib/preview");
 var utils     = require("./lib/utils");
 
 var _        = require("lodash");
@@ -17,6 +18,9 @@ var defaults = {
     svgFile:  "sprites/svg-sprite.svg",
     svgPath: "../%f",
     pngPath: "../%f",
+    preview: {
+        svgSprite: "preview-svg-sprite.html"
+    },
     refSize: 26,
     unit: 0
 };
@@ -36,7 +40,7 @@ function error(context, msg) {
 module.exports.svg = function (config) {
 
     var tasks = [];
-    config = _.merge(defaults, config || {});
+    config = _.merge(_.cloneDeep(defaults), config || {});
 
     return through2.obj(function (file, enc, cb) {
 
@@ -48,19 +52,29 @@ module.exports.svg = function (config) {
 
     }, function (cb) {
 
-        var combined = svgutil.buildSVGSprite(config.classNameSuffix, tasks, config);
-        var cssData  = cssRender.render(combined.spriteData, config);
+        var combined    = svgutil.buildSVGSprite(config.classNameSuffix, tasks, config);
+        var css         = cssRender.render(combined.spriteData, config);
+        var previewPage = preview.render(css.elements, config);
+
+        this.push(new File({
+            cwd:  "./",
+            base: "./",
+            path: config.preview.svgSprite,
+            contents: new Buffer(previewPage.svgSprite.content)
+        }));
+
         this.push(new File({
             cwd:  "./",
             base: "./",
             path: config.svgFile,
             contents: new Buffer(combined.content)
         }));
+
         this.push(new File({
             cwd:  "./",
             base: "./",
             path: config.cssFile,
-            contents: new Buffer(cssData)
+            contents: new Buffer(css.content)
         }));
         cb(null);
     });
