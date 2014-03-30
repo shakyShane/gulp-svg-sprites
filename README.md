@@ -96,6 +96,13 @@ gulp.task('sprites', function () {
 
 Take a look at the defaults in index.js:14 to see what else you can override.
 
+## Contributors
+
+```
+    18	Shane Osbourne
+     1	David Mair Spiess
+```
+
 ## License
 Copyright (c) 2013 Shane Osbourne
 Licensed under the MIT license.
