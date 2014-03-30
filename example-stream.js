@@ -10,10 +10,8 @@ var paths = {
 };
 
 var config = {
-    className: function (file) {
-        return ".svg-" + file;
-    },
-    unit: 30
+    className: ".svg-%f-icon",
+    unit: 0
 };
 
 fs.src(paths.svgSrc)
