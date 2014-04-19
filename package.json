@@ -38,7 +38,7 @@
     "gulpplugin"
   ],
   "devDependencies": {
-    "vinyl-fs": "^0.1.0",
+    "vinyl-fs": "^0.1.4",
     "gulp": "~3.5.2",
     "mocha": "~1.18.0",
     "gulp-jshint": "~1.4.0",

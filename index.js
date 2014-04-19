@@ -23,7 +23,8 @@ var defaults = {
         svgSprite: "preview-svg-sprite.html"
     },
     refSize: 26,
-    unit: 0
+    unit: 0,
+    defs: false
 };
 
 /**
