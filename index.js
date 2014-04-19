@@ -24,7 +24,8 @@ var defaults = {
     },
     refSize: 26,
     unit: 0,
-    defs: false
+    defs: false,
+    hideSvg: true
 };
 
 /**
