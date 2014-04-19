@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 body {
     padding: 0;
     margin: 0;
@@ -15,7 +18,7 @@ header {
 }
 
 header p {
-    margin: 2em 0 0 0
+    margin: 0 0 0 0;
 }
 
 nav {
@@ -53,14 +56,14 @@ ul {
     padding: 0
 }
 
-li {
+.icon-boxes li {
     display: inline-block;
     background-color: #fff;
     position: relative;
     margin: 0 2em 2em 0;
     vertical-align: top;
     border: 1px solid #ccc;
-    padding: 1em 1em 3em 1em;
+    padding: 1em 1em 1em 1em;
     cursor: default
 }
 
@@ -75,6 +78,9 @@ li {
     vertical-align: middle;
     text-align: center
 }
+.icon-box.inverted {
+    background: black;
+}
 
 .icon {
     display: inline;
@@ -84,29 +90,37 @@ li {
 .snippet-popover {
     position: absolute;
     display: none;
-    left: 0px;
+    opacity: 0;
     bottom: 0;
+    left: 0;
     background: white;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 16px;
+    z-index: 1;
+    transition: all .3s;
+}
+.snippet-popover.active {
+    display: block;
+    opacity: 1;
 }
 
 pre {
     margin: 0;
+    margin-bottom: 20px;
 }
 
 h2 {
     margin: 0;
-    padding: 0;
+    padding: 5px 0;
     font-size: 1em;
     font-weight: normal;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    position: absolute;
-    left: 1em;
-    right: 1em;
-    bottom: 1em
+}
+
+h4 {
+    margin: 0;
 }
 
 footer {

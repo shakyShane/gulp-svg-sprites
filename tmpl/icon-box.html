@@ -1,6 +1,13 @@
         <li title="{:name:}">
-            <div class="icon-box">
+            <div class="icon-box" id="icon-box-{:id:}">
                 <div class="{:classes:}"></div>
             </div>
             <h2>{:name:}</h2>
+            <button onclick="showPopover('snippet-{:id:}')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-{:id:}')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-{:id:}">
+                <pre><code>&lt;div class=&quot;{:classes:}&quot;&gt;&lt;/div&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
         </li>

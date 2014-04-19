@@ -8,7 +8,6 @@ var fs           = require("fs");
 
 var cwd          = process.cwd();
 
-var expectedDefsPreview = fs.readFileSync(cwd + "/test/fixtures/expected/svg-defs.html", "utf-8");
 var expectedDefs        = fs.readFileSync(cwd + "/test/fixtures/expected/defs.css", "utf-8");
 
 
@@ -20,10 +19,12 @@ describe("Creating SVG DEFS", function () {
 
         stream = svgSprites.svg({
             defs: true,
-            svgFile: "defs/defs.php"
+            svg: {
+                defs: "defs/defs.php"
+            }
         });
 
-        expectedFiles = ["preview-svg-sprite.html", "defs/defs.php", "css/sprites.css"];
+        expectedFiles = ["preview-svg.html", "defs/defs.php", "css/sprites.css"];
 
         streamHelper(stream, function (data) {
             actual = data;

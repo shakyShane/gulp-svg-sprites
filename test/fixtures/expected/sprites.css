@@ -22,4 +22,5 @@
 .unicorn {
 	display: inline-block;
 	background-image: url("../sprites/svg-sprite.svg");
+	background-repeat: no-repeat;
 }

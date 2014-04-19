@@ -16,3 +16,24 @@ gulp.task('contribs', function () {
 });
 
 gulp.task('default', ['lint']);
+
+var svgSprites = require("./index");
+
+var svg = svgSprites.svg;
+var png = svgSprites.png;
+
+var paths = {
+    svgSrc: ["test/fixtures/svg/*.svg"],
+    svgDest: "./test/fixtures"
+};
+
+var config = {
+    defs: false
+};
+
+gulp.task('dev', function () {
+    gulp.src(paths.svgSrc)
+        .pipe(svg(config))
+        .pipe(gulp.dest(paths.svgDest))
+        .pipe(png());
+});

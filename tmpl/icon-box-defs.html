@@ -1,8 +1,17 @@
         <li title="{:name:}">
-            <div class="icon-box">
+            <div class="icon-box" id="icon-box-{:id:}">
                 <svg viewBox="0 0 {:width:} {:height:}" class="{:classes:}">
                     <use xlink:href="#{:id:}"></use>
                 </svg>
             </div>
             <h2>{:name:}</h2>
+            <button onclick="showPopover('snippet-{:id:}')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-{:id:}')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-{:id:}">
+                <pre><code>&lt;svg viewBox=&quot;0 0 {:width:} {:height:}&quot; class=&quot;{:classes:}&quot;&gt;
+    &lt;use xlink:href=&quot;#{:id:}&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
         </li>

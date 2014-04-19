@@ -17,7 +17,7 @@ describe("Creating SVG Spritesheets", function () {
 
     before(function (done) {
 
-        stream = svgSprites.svg();
+        stream = svgSprites.svg({});
         expectedFiles = ["preview-svg-sprite.html", "sprites/svg-sprite.svg", "css/sprites.css"];
 
         streamHelper(stream, function (data) {

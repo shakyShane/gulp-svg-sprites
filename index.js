@@ -16,11 +16,15 @@ var defaults = {
     className: ".%f",
     svgId:     "%f",
     cssFile:   "css/sprites.css",
-    svgFile:   "sprites/svg-sprite.svg",
     svgPath:   "../%f",
     pngPath:   "../%f",
     preview: {
-        svgSprite: "preview-svg-sprite.html"
+        svgSprite: "preview-svg-sprite.html",
+        svgDefs: "preview-svg.html"
+    },
+    svg: {
+        sprite: "sprites/svg-sprite.svg",
+        defs: "sprites/svg-defs.svg"
     },
     refSize: 26,
     unit: 0,
@@ -42,8 +46,14 @@ function error(context, msg) {
  */
 module.exports.svg = function (config) {
 
+
     var tasks = [];
     config = _.merge(_.cloneDeep(defaults), config || {});
+
+    // Backwards compatibility
+    if (typeof config.svgFile === "string") {
+        config.svg.sprite = config.svgFile;
+    }
 
     return through2.obj(function (file, enc, cb) {
 
@@ -62,14 +72,14 @@ module.exports.svg = function (config) {
         this.push(new File({
             cwd:  "./",
             base: "./",
-            path: config.preview.svgSprite,
+            path: config.defs ? config.preview.svgDefs : config.preview.svgSprite,
             contents: new Buffer(previewPage.svgSprite.content)
         }));
 
         this.push(new File({
             cwd:  "./",
             base: "./",
-            path: config.svgFile,
+            path: config.defs ? config.svg.defs : config.svg.sprite,
             contents: new Buffer(combined.content)
         }));
 
@@ -90,8 +100,14 @@ module.exports.png = function () {
     return through2.obj(function (file, enc, cb) {
         var stream = this;
         if (path.extname(file.path) === ".svg") {
+
+            if (file.contents.toString().indexOf(svgutil.templates.prefix) < 0) {
+                error(stream, "This SVG format is not supported");
+            }
+
             var svgPath = path.resolve(file.path);
             var pngPath = path.resolve(utils.swapFileName(file.path));
+
             svg2png(svgPath, pngPath, function (err) {
                 if (err) {
                     error(stream, "Could not create the PNG format");
