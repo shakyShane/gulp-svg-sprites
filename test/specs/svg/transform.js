@@ -10,6 +10,7 @@ var config = {
     svgId: "svg-%f"
 };
 
+/* jshint ignore:start */
 var input = '<g fill="#fff"><path d="M14"/></g>';
 
 describe("Transforming svgs", function(){
@@ -67,3 +68,4 @@ describe("Generating the attributes", function(){
         assert.equal(actual, expected);
     });
 });
+/* jshint ignore:end */
