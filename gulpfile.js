@@ -28,12 +28,12 @@ var paths = {
 };
 
 var config = {
-    defs: false
+    padding: 10
 };
 
 gulp.task('dev', function () {
     gulp.src(paths.svgSrc)
         .pipe(svg(config))
         .pipe(gulp.dest(paths.svgDest))
-        .pipe(png());
+        .pipe(png())
 });
