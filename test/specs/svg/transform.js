@@ -14,11 +14,10 @@ describe("Transforming svgs", function(){
     beforeEach(function () {
         obj = {
             data:     input,
-            filename: "facebook"
+            filename: "facebook",
+            id: "svg-facebook"
         };
-        config = {
-            svgId: "svg-%f"
-        };
+        config = {};
     });
     it("should add transform & ID attrs", function(){
         var actual   = transform(obj, 0, 0, config);
