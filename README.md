@@ -10,6 +10,11 @@ Install it locally to your project.
 
 `npm install gulp-svg-sprites`
 
+##Screencasts
+1. [Simple usage](http://quick.as/ebeh4va)
+2. [Configuration](http://quick.as/bdpiolw)
+3. [Support for `<defs>` output](http://quick.as/3v0svmo) (as per [Chris Coyiers article](http://css-tricks.com/svg-sprites-use-better-icon-fonts/))
+
 ## Example 1 - Sprite Sheet
 This will take a bunch of SVGs, create a sprite-sheet out of it (in both SVG & PNG) & write all the CSS for you (including `.no-svg` prefixes for the fallback)
 
