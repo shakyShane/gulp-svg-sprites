@@ -83,23 +83,3 @@ describe("cleanClassName(): ", function () {
         assert.equal(actual, expected);
     });
 });
-
-describe("makePath(): ", function () {
-    it("Should make a file path", function () {
-        var template = "../%f";
-        var svgFile  = "sprites/svg-sprite.svg";
-        var actual   = makePath(template, svgFile);
-        var expected = "../sprites/svg-sprite.svg";
-        assert.equal(actual, expected);
-    });
-    it("Should make a file path from function", function () {
-        var template = function (svgfile, config) {
-            var sections = svgfile.split("/");
-            return "dist/" + sections[1];
-        };
-        var svgFile  = "sprites/svg-sprite.svg";
-        var actual   = makePath(template, svgFile);
-        var expected = "dist/svg-sprite.svg";
-        assert.equal(actual, expected);
-    });
-});

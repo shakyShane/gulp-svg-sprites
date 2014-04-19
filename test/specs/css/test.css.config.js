@@ -1,10 +1,10 @@
 "use strict";
 
-var svgSprites  = require("../../../index");
+var svgSprites   = require("../../../index");
 var streamHelper = require("../init");
 
-var assert      = require("chai").assert;
-var fs          = require("fs");
+var assert       = require("chai").assert;
+var fs           = require("fs");
 
 var cwd          = process.cwd();
 

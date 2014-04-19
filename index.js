@@ -14,10 +14,11 @@ var PLUGIN_NAME = "gulp-svg-sprites";
 
 var defaults = {
     className: ".%f",
-    cssFile:  "css/sprites.css",
-    svgFile:  "sprites/svg-sprite.svg",
-    svgPath: "../%f",
-    pngPath: "../%f",
+    svgId:     "%f",
+    cssFile:   "css/sprites.css",
+    svgFile:   "sprites/svg-sprite.svg",
+    svgPath:   "../%f",
+    pngPath:   "../%f",
     preview: {
         svgSprite: "preview-svg-sprite.html"
     },
