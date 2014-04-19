@@ -1,6 +1,6 @@
 # gulp-svg-sprites [![Build Status](https://travis-ci.org/shakyShane/gulp-svg-sprites.png?branch=master)](https://travis-ci.org/shakyShane/gulp-svg-sprites)
 
-Create SVG sprites with PNG fallbacks
+Gulp plugin for working with SVGs
 
 **Notice** - This is a new project with a deliberately minimal feature set. If there's something missing that would help you though, post an issue
 and we'll try to get it implemented.
@@ -10,8 +10,8 @@ Install it locally to your project.
 
 `npm install gulp-svg-sprites`
 
-## Example, using defaults
-There are more [examples here](https://github.com/shakyShane/gulp-svg-sprites/tree/master/examples).
+## Example 1 - Sprite Sheet
+This will take a bunch of SVGs, create a sprite-sheet out of it (in both SVG & PNG) & write all the CSS for you (including `.no-svg` prefixes for the fallback)
 
 ```js
 var gulp = require('gulp');
@@ -27,6 +27,26 @@ gulp.task('sprites', function () {
             .pipe(png())
 });
 ```
+
+## Example 2 - using `<defs>`
+As explained in [this article by Chris Coyier](http://css-tricks.com/svg-sprites-use-better-icon-fonts/), there's an even better way to use SVGs, if you are not concerned with old versions of IE.
+Setting the config option `defs: true` will create the required output for using that technique.
+
+**NOTE:** when using this mode, you cannot generate a PNG fallback from the SVG output. Trying to do so will cause an error.
+
+```
+var gulp = require('gulp');
+var svgSprites = require('gulp-svg-sprites');
+
+var svg = svgSprites.svg;
+
+gulp.task('sprites', function () {
+    gulp.src('assets/svg/*.svg')
+            .pipe(svg({defs: true}))
+            .pipe(gulp.dest("assets"));
+});
+```
+
 
 ## Example, with custom class names
 
@@ -94,13 +114,35 @@ gulp.task('sprites', function () {
 });
 ```
 
-Take a look at the defaults in index.js:14 to see what else you can override.
+
+##Common options
+
+**padding**
+
+Add some spacing around your sprite sheet items by setting this option
+
+```js
+// Add 5px padding to the sprite sheet
+gulp.task('sprites', function () {
+    gulp.src('assets/svg/*.svg')
+            .pipe(svg({padding: 5))
+            .pipe(gulp.dest("assets"))
+            .pipe(png())
+});
+```
+
+Take a look at [index.js](https://github.com/shakyShane/gulp-svg-sprites/blob/master/index.js#L15) to see which other options you can override.
+
+
+
 
 ## Contributors
 
 ```
-    18	Shane Osbourne
-     1	David Mair Spiess
+    34	Shane Osbourne
+     3	David Mair Spiess
+     1	Alexander Flatscher
+     1	David Blurton
 ```
 
 ## License

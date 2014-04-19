@@ -19,15 +19,15 @@ var defaults = {
     svgPath:   "../%f",
     pngPath:   "../%f",
     preview: {
-        svgSprite: "preview-svg-sprite.html",
-        svgDefs: "preview-svg.html"
+        sprite: "preview-svg-sprite.html",
+        defs: "preview-svg.html"
     },
     svg: {
         sprite: "sprites/svg-sprite.svg",
         defs: "sprites/svg-defs.svg"
     },
     refSize: 26,
-    unit: 0,
+    padding: 0,
     defs: false,
     hideSvg: true
 };
@@ -54,6 +54,9 @@ module.exports.svg = function (config) {
     if (typeof config.svgFile === "string") {
         config.svg.sprite = config.svgFile;
     }
+    if (config.unit) {
+        config.padding = config.unit;
+    }
 
     return through2.obj(function (file, enc, cb) {
 
@@ -72,7 +75,7 @@ module.exports.svg = function (config) {
         this.push(new File({
             cwd:  "./",
             base: "./",
-            path: config.defs ? config.preview.svgDefs : config.preview.svgSprite,
+            path: config.defs ? config.preview.defs : config.preview.sprite,
             contents: new Buffer(previewPage.svgSprite.content)
         }));
 
