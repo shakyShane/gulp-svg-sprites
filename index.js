@@ -70,14 +70,17 @@ module.exports.svg = function (config) {
 
         var combined    = svgutil.buildSVGSprite(config.classNameSuffix, tasks, config);
         var css         = cssRender.render(combined.spriteData, config);
-        var previewPage = preview.render(css.elements, combined.content, config);
 
-        this.push(new File({
-            cwd:  "./",
-            base: "./",
-            path: config.defs ? config.preview.defs : config.preview.sprite,
-            contents: new Buffer(previewPage.svgSprite.content)
-        }));
+        if (config.preview !== false) {
+            var previewPage = preview.render(css.elements, combined.content, config);
+            
+            this.push(new File({
+                cwd:  "./",
+                base: "./",
+                path: config.defs ? config.preview.defs : config.preview.sprite,
+                contents: new Buffer(previewPage.svgSprite.content)
+            }));
+        }
 
         this.push(new File({
             cwd:  "./",
