@@ -22,14 +22,14 @@ describe("Wrapping SVGs", function(){
     it("should wrap in DEF output if enabled in config", function() {
         config.defs = true;
         var actual   = wrap(1000, 200, mockItems, config);
-        var expected = '<svg><defs><g id="item1"></g><g id="item2"></g></defs></svg>';
+        var expected = '<svg xmlns="http://www.w3.org/2000/svg"><defs><g id="item1"></g><g id="item2"></g></defs></svg>';
         assert.equal(actual, expected);
     });
     it("should wrap in DEF output & be hidden if enabled in config", function() {
         config.defs    = true;
         config.hideSvg = true;
         var actual   = wrap(1000, 200, mockItems, config);
-        var expected = '<svg style="display:none"><defs><g id="item1"></g><g id="item2"></g></defs></svg>';
+        var expected = '<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><defs><g id="item1"></g><g id="item2"></g></defs></svg>';
         assert.equal(actual, expected);
     });
 });
