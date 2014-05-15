@@ -29,7 +29,8 @@ var defaults = {
     refSize: 26,
     padding: 0,
     defs: false,
-    hideSvg: true
+    hideSvg: true,
+    generatePreview: true
 };
 
 /**
@@ -71,7 +72,7 @@ module.exports.svg = function (config) {
         var combined    = svgutil.buildSVGSprite(config.classNameSuffix, tasks, config);
         var css         = cssRender.render(combined.spriteData, config);
 
-        if (config.preview !== false) {
+        if (config.generatePreview) {
             var previewPage = preview.render(css.elements, combined.content, config);
             
             this.push(new File({

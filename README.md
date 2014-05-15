@@ -143,7 +143,7 @@ Disable the generation of HTML previews
 ```js
 gulp.task('sprites', function () {
     gulp.src('assets/svg/*.svg')
-            .pipe(svg({preview: false}))
+            .pipe(svg({generatePreview: false}))
             .pipe(gulp.dest("assets"))
             .pipe(png())
 });
