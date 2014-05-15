@@ -86,12 +86,13 @@ describe("substitute(): CSS ELEMENT", function () {
         var template = templates.cssElement;
         var params = {
             selector: ".shane",
-            width: 12,
-            height: 13,
-            x: 54
+            width: 1.2,
+            height: 1.3,
+            relativex: 54,
+            backgroundSize: 100
         };
         var actual   = substitute(template, params);
-        var expected = "\n.shane {\n\twidth: 12px;\n\theight: 13px;\n\tbackground-position: -54px 0;\n}\n";
+        var expected = "\n.shane:before {\n\twidth: 1.2em;\n\theight: 1.3em;\n\tbackground-position: 54% 0;\n\tbackground-size: auto 100%;\n}\n";
         assert.equal(actual, expected);
     });
 });
