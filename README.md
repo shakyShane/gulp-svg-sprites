@@ -136,6 +136,19 @@ gulp.task('sprites', function () {
 });
 ```
 
+**disabling previews**
+
+Disable the generation of HTML previews
+
+```js
+gulp.task('sprites', function () {
+    gulp.src('assets/svg/*.svg')
+            .pipe(svg({generatePreview: false}))
+            .pipe(gulp.dest("assets"))
+            .pipe(png())
+});
+```
+
 Take a look at [index.js](https://github.com/shakyShane/gulp-svg-sprites/blob/master/index.js#L15) to see which other options you can override.
 
 
