@@ -32,7 +32,7 @@
     </ol>
 </header>
 <section>
-    <nav><button onclick="toggleMode()">Toggle PNG/SVG</button> (showing <span id="mode-view">SVG</span>)</nav>
+    <nav><button onclick="toggleMode()">Toggle PNG/SVG</button> (showing <span id="mode-view">SVG</span><br><br><input type="range" onchange="setSize(this.value)" min="2" max="14"></nav>
     <ul class="icon-boxes">
 {:iconBoxes:}
     </ul>
@@ -44,6 +44,13 @@
 
     var openSnippet;
     var modeView = document.getElementById("mode-view");
+    var icons = document.querySelectorAll(".icon");
+ 
+    function setSize (fontSize) {
+        for (var i = 0; i < icons.length; i++) {
+            icons[i].style.fontSize = fontSize + 'px';
+        }
+    }
 
     function showPopover(id) {
         openSnippet = document.getElementById(id);
