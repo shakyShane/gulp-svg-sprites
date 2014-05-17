@@ -5,9 +5,9 @@ var utils     = require("./lib/utils");
 
 var _        = require("lodash");
 var gutil    = require("gulp-util");
+var File     = gutil.File;
 var path     = require("path");
 var through2 = require("through2");
-var File     = require("vinyl");
 var svg2png  = require("svg2png");
 
 var PLUGIN_NAME = "gulp-svg-sprites";
@@ -74,7 +74,7 @@ module.exports.svg = function (config) {
 
         if (config.generatePreview) {
             var previewPage = preview.render(css.elements, combined.content, config);
-            
+
             this.push(new File({
                 cwd:  "./",
                 base: "./",
