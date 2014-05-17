@@ -12,3 +12,4 @@ Thumbs.db
 .idea
 test/fixtures/css
 test/fixtures/sprites
+test/fixtures/output

@@ -28,10 +28,10 @@ var paths = {
 };
 
 var config = {
-    padding: 10
+    svgId: "svg-%f-icon"
 };
 
-gulp.task('dev', function () {
+gulp.task('sprites', function () {
     gulp.src(paths.svgSrc)
         .pipe(svg(config))
         .pipe(gulp.dest(paths.svgDest))

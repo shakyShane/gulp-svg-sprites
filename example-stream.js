@@ -6,12 +6,13 @@ var png = svgSprites.png;
 
 var paths = {
     svgSrc: ["test/fixtures/svg/*.svg"],
-    svgDest: "./test/fixtures"
+    svgDest: "./test/fixtures/output"
 };
 
 var config = {
     className: ".svg-%f-icon",
-    unit: 0
+    unit: 0,
+    cssFile: "css/_shane.scss"
 };
 
 fs.src(paths.svgSrc)
