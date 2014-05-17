@@ -13,3 +13,4 @@ Thumbs.db
 test/fixtures/css
 test/fixtures/sprites
 test/fixtures/output
+example-stream.js

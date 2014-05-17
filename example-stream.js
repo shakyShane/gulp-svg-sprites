@@ -12,7 +12,8 @@ var paths = {
 var config = {
     className: ".svg-%f-icon",
     unit: 0,
-    cssFile: "css/_shane.scss"
+    cssFile: "css/_shane.scss",
+    generatePreview: false
 };
 
 fs.src(paths.svgSrc)
