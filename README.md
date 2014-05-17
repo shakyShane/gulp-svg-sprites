@@ -157,12 +157,14 @@ Take a look at [index.js](https://github.com/shakyShane/gulp-svg-sprites/blob/ma
 ## Contributors
 
 ```
-    34	Shane Osbourne
+    44	Shane Osbourne
+     5	thomaswelton
      3	David Mair Spiess
      1	Alexander Flatscher
      1	David Blurton
+     1	Thomas Welton
 ```
 
 ## License
-Copyright (c) 2013 Shane Osbourne
+Copyright (c) 2014 Shane Osbourne
 Licensed under the MIT license.
