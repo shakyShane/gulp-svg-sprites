@@ -26,7 +26,7 @@ var svg = svgSprites.svg;
 var png = svgSprites.png;
 
 gulp.task('sprites', function () {
-    gulp.src('assets/svg/*.svg')
+    return gulp.src('assets/svg/*.svg')
             .pipe(svg())
             .pipe(gulp.dest("assets"))
             .pipe(png())
@@ -46,7 +46,7 @@ var svgSprites = require('gulp-svg-sprites');
 var svg = svgSprites.svg;
 
 gulp.task('sprites', function () {
-    gulp.src('assets/svg/*.svg')
+    return gulp.src('assets/svg/*.svg')
             .pipe(svg({defs: true}))
             .pipe(gulp.dest("assets"));
 });
@@ -64,7 +64,7 @@ var config = {
 };
 
 gulp.task('sprites', function () {
-    gulp.src('assets/svg/*.svg')
+    return gulp.src('assets/svg/*.svg')
             .pipe(svg(config))
             .pipe(gulp.dest("assets"))
             .pipe(png())
@@ -87,7 +87,7 @@ var config = {
 };
 
 gulp.task('sprites', function () {
-    gulp.src('assets/svg/*.svg')
+    return gulp.src('assets/svg/*.svg')
             .pipe(svg(config))
             .pipe(gulp.dest("assets"))
             .pipe(png())
@@ -112,7 +112,7 @@ var config = {
 };
 
 gulp.task('sprites', function () {
-    gulp.src('assets/svg/*.svg')
+    return gulp.src('assets/svg/*.svg')
             .pipe(svg(config))
             .pipe(gulp.dest("assets"))
             .pipe(png())
@@ -129,7 +129,7 @@ Add some spacing around your sprite sheet items by setting this option
 ```js
 // Add 5px padding to the sprite sheet
 gulp.task('sprites', function () {
-    gulp.src('assets/svg/*.svg')
+    return gulp.src('assets/svg/*.svg')
             .pipe(svg({padding: 5))
             .pipe(gulp.dest("assets"))
             .pipe(png())
@@ -142,7 +142,7 @@ Disable the generation of HTML previews
 
 ```js
 gulp.task('sprites', function () {
-    gulp.src('assets/svg/*.svg')
+    return gulp.src('assets/svg/*.svg')
             .pipe(svg({generatePreview: false}))
             .pipe(gulp.dest("assets"))
             .pipe(png())
