@@ -5,7 +5,7 @@ var streamHelper = require("../init");
 
 var assert       = require("chai").assert;
 
-describe("Creating HTML Previews", function () {
+describe("Creating CSS Previews", function () {
 
     var stream, expected, actual, config;
 
@@ -25,7 +25,7 @@ describe("Creating HTML Previews", function () {
         });
     });
 
-    it("should not generate a preview when generatePreview: false", function () {
+    it("should not generate a CSS file when generateCSS: false", function () {
         assert.deepEqual(Object.keys(actual), expected);
     });
 });
