@@ -30,7 +30,8 @@ var defaults = {
     padding: 0,
     defs: false,
     hideSvg: true,
-    generatePreview: true
+    generatePreview: true,
+    generateCSS: true
 };
 
 /**
@@ -90,12 +91,14 @@ module.exports.svg = function (config) {
             contents: new Buffer(combined.content)
         }));
 
-        this.push(new File({
-            cwd:  "./",
-            base: "./",
-            path: config.cssFile,
-            contents: new Buffer(css.content)
-        }));
+        if (config.generateCSS) {
+            this.push(new File({
+                cwd:  "./",
+                base: "./",
+                path: config.cssFile,
+                contents: new Buffer(css.content)
+            }));
+        }
         cb(null);
     });
 };

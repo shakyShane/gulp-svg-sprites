@@ -12,11 +12,12 @@ describe("Creating HTML Previews", function () {
     before(function (done) {
 
         config = {
-            generatePreview: false
+            generatePreview: false,
+            generateCSS: false
         };
 
         stream = svgSprites.svg(config);
-        expected = ["sprites/svg-sprite.svg", "css/sprites.css"];
+        expected = ["sprites/svg-sprite.svg"];
 
         streamHelper(stream, function (data) {
             actual = data;
