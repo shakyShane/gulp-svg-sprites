@@ -91,7 +91,7 @@ describe("substitute(): CSS ELEMENT", function () {
             relativex: 54
         };
         var actual   = substitute(template, params);
-        var expected = "\n.shane:before {\n\twidth: 1.2em;\n\theight: 1.3em;\n\tbackground-position: 54% 0;\n}\n";
+        var expected = "\n.shane:before {\n\twidth: 1.2em;\n\theight: 1.3em;\n\tbackground-position: -54em 0;\n}\n";
         assert.equal(actual, expected);
     });
 });

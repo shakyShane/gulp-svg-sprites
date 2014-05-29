@@ -2,13 +2,13 @@
 .facebook:before {
 	width: 10em;
 	height: 7em;
-	background-position: 0% 0;
+	background-position: -0em 0;
 }
 
 .unicorn:before {
 	width: 30em;
 	height: 20em;
-	background-position: 100% 0;
+	background-position: -10em 0;
 }
 
 .facebook,
