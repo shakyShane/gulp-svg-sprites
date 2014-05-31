@@ -9,12 +9,7 @@ var paths = {
     svgDest: "./test/fixtures/output"
 };
 
-var config = {
-    className: ".svg-%f-icon",
-    unit: 0,
-    cssFile: "css/_shane.scss",
-    generatePreview: false
-};
+var config = {};
 
 fs.src(paths.svgSrc)
     .pipe(svg(config))
