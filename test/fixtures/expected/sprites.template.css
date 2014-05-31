@@ -2,15 +2,13 @@
 .svg-facebook-icon:before {
 	width: 10em;
 	height: 7em;
-	background-position: 0% 0;
-	background-size: auto 285.7142857142857%;
+	background-position: -0em 0;
 }
 
 .svg-unicorn-icon:before {
 	width: 30em;
 	height: 20em;
-	background-position: 100% 0;
-	background-size: auto 100%;
+	background-position: -10em 0;
 }
 
 .svg-facebook-icon,
@@ -30,4 +28,5 @@
 	display: inline-block;
 	background-image: url("../sprites/svg-sprite.svg");
 	background-repeat: no-repeat;
+	background-size: 40em 20em;
 }
