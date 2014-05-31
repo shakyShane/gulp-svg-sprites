@@ -32,7 +32,4 @@ describe("Creating SVG Spritesheets", function () {
     it("should render CSS correctly", function () {
         assert.deepEqual(expectedCss, actual["css/sprites.css"]);
     });
-    it("should render HTML Preview correctly", function () {
-        assert.deepEqual(expectedPreview, actual["preview-svg-sprite.html"]);
-    });
 });
