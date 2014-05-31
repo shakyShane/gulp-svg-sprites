@@ -1,26 +1,32 @@
 
-.svg-facebook-icon {
-	width: 100px;
-	height: 70px;
-	background-position: -0px 0;
+.svg-facebook-icon:before {
+	width: 10em;
+	height: 7em;
+	background-position: -0em 0;
 }
 
-.svg-unicorn-icon {
-	width: 300px;
-	height: 200px;
-	background-position: -100px 0;
-}
-
-.no-svg .svg-facebook-icon,
-.no-svg .svg-unicorn-icon {
-	display: inline-block;
-	background-image: url("../sprites/png-sprite.png");
-	background-size: 400px 200px;
+.svg-unicorn-icon:before {
+	width: 30em;
+	height: 20em;
+	background-position: -10em 0;
 }
 
 .svg-facebook-icon,
 .svg-unicorn-icon {
+	font-size:10px;
+}
+
+.no-svg .svg-facebook-icon:before,
+.no-svg .svg-unicorn-icon:before {
+	background-image: url("../sprites/png-sprite.png");
+}
+
+.svg-facebook-icon:before,
+.svg-unicorn-icon:before {
+	content:' ';
+	vertical-align:middle;
 	display: inline-block;
 	background-image: url("../sprites/svg-sprite.svg");
 	background-repeat: no-repeat;
+	background-size: 40em 20em;
 }
