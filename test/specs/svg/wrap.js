@@ -29,7 +29,7 @@ describe("Wrapping SVGs", function(){
         config.defs    = true;
         config.hideSvg = true;
         var actual   = wrap(1000, 200, mockItems, config);
-        var expected = '<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><defs><g id="item1"></g><g id="item2"></g></defs></svg>';
+        var expected = '<svg style="display:none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><g id="item1"></g><g id="item2"></g></defs></svg>';
         assert.equal(actual, expected);
     });
 });
