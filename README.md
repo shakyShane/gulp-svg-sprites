@@ -29,7 +29,7 @@ gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
             .pipe(svg())
             .pipe(gulp.dest("assets"))
-            .pipe(png())
+            .pipe(png());
 });
 ```
 
@@ -67,7 +67,7 @@ gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
             .pipe(svg(config))
             .pipe(gulp.dest("assets"))
-            .pipe(png())
+            .pipe(png());
 });
 ```
 
@@ -90,7 +90,7 @@ gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
             .pipe(svg(config))
             .pipe(gulp.dest("assets"))
-            .pipe(png())
+            .pipe(png());
 });
 ```
 
@@ -115,7 +115,7 @@ gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
             .pipe(svg(config))
             .pipe(gulp.dest("assets"))
-            .pipe(png())
+            .pipe(png());
 });
 ```
 
@@ -132,7 +132,7 @@ gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
             .pipe(svg({padding: 5))
             .pipe(gulp.dest("assets"))
-            .pipe(png())
+            .pipe(png());
 });
 ```
 
@@ -145,7 +145,7 @@ gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
             .pipe(svg({generatePreview: false}))
             .pipe(gulp.dest("assets"))
-            .pipe(png())
+            .pipe(png());
 });
 ```
 
