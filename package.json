@@ -25,12 +25,11 @@
   },
   "dependencies": {
     "lodash": "^2.4.1",
-    "phantomjs": "*",
     "svgo": "^0.4.4",
     "through2": "^0.4.1",
     "vinyl": "^0.2.3",
-    "gulp-util": "^2.2.14",
-    "svg2png": "^1.0.1"
+    "gulp-util": "^3.0.0",
+    "svg-sprite-data": "0.0.1"
   },
   "keywords": [
     "svg",
