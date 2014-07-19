@@ -29,7 +29,9 @@
     "through2": "^0.4.1",
     "vinyl": "^0.2.3",
     "gulp-util": "^3.0.0",
-    "svg-sprite-data": "0.0.1"
+    "svg-sprite-data": "0.0.1",
+    "dust": "^0.3.0",
+    "dustjs-linkedin": "^2.4.0"
   },
   "keywords": [
     "svg",
@@ -43,6 +45,7 @@
     "gulp-jshint": "~1.4.0",
     "chai": "~1.9.0",
     "sinon": "~1.8.2",
-    "gulp-contribs": "0.0.2"
+    "gulp-contribs": "0.0.2",
+    "gulp-clean": "^0.3.1"
   }
 }

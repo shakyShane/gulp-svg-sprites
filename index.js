@@ -1,9 +1,18 @@
 var svgutil    = require("./lib/svg-utils");
 var cssRender  = require("./lib/css-render");
 var preview    = require("./lib/preview");
+var _          = require("lodash");
+var fs         = require("fs");
 var utils      = require("./lib/utils");
-var SpriteData = require("svg-sprite-data");
+var dust       = require("dustjs-linkedin");
+dust.optimizers.format = function(ctx, node) { return node };
 
+
+/**
+ * DEVELOP
+ * @type {SpriteData|exports}
+ */
+var SpriteData = require("/Users/shakyshane/Sites/svg-sprite");
 
 var _        = require("lodash");
 var gutil    = require("gulp-util");
@@ -14,7 +23,10 @@ var through2 = require("through2");
 var PLUGIN_NAME = "gulp-svg-sprites";
 
 var defaults = {
-    className: ".%f",
+    common: "icon",
+    selector: "%f",
+    layout: "diagonal",
+    dims: true,
     svgId:     "%f",
     cssFile:   "css/sprites.css",
     svgPath:   "../%f",
@@ -34,6 +46,41 @@ var defaults = {
     generatePreview: true,
     generateCSS: true
 };
+
+var templatePaths = {
+    css: "./tmpl/sprite.css"
+};
+
+/**
+ * @param config
+ * @returns {{}}
+ */
+function getTemplates(config) {
+
+    var templates = {};
+
+    Object.keys(templatePaths).forEach(function (key) {
+        if (config.templates && config.templates[key]) {
+            templates[key] = config.templates[key];
+        } else {
+            templates[key] = fs.readFileSync(templatePaths[key], "utf-8");
+        }
+    });
+
+    return templates;
+}
+
+/**
+ * Any last-minute transformations before compiling templates
+ * @param data
+ * @param config
+ * @returns {*}
+ */
+function transformData(data, config) {
+    data.svgPath = config.svgPath.replace("%f", config.svg.sprite);
+    data.pngPath = config.pngPath.replace("%f", config.svg.sprite.replace(/\.svg$/, ".png"));
+    return data;
+}
 
 /**
  * Helper for correct plugin errors
@@ -60,63 +107,57 @@ module.exports.svg = function (config) {
         config.padding = config.unit;
     }
 
-    var libconfig = {
-        common: "icon",
-        dims: true,
-        layout: "diagonal",
-        render: {
-            css: true
-        }
-    };
-
-    var spriter = new SpriteData(libconfig);
+    var spriter = new SpriteData(config);
 
     return through2.obj(function (file, enc, cb) {
 
         spriter.add(file.path, file.contents.toString());
+
         cb(null);
 
     }, function (cb) {
 
-//        var combined    = svgutil.buildSVGSprite(config.classNameSuffix, tasks, config);
-//        var css         = cssRender.render(combined.spriteData, config);
-//
-//        if (config.generatePreview) {
-//            var previewPage = preview.render(css.elements, combined.content, config);
-//
-//            this.push(new File({
-//                cwd:  "./",
-//                base: "./",
-//                path: config.defs ? config.preview.defs : config.preview.sprite,
-//                contents: new Buffer(previewPage.svgSprite.content)
-//            }));
-//        }
-//
-//        this.push(new File({
-//            cwd:  "./",
-//            base: "./",
-//            path: config.defs ? config.svg.defs : config.svg.sprite,
-//            contents: new Buffer(combined.content)
-//        }));
-//
-//        if (config.generateCSS) {
-//        }
-
         var stream = this;
 
-        // Compile
         spriter.compile(function (err, svg) {
 
-            stream.push(new File({
-                cwd:  "./",
-                base: "./",
-                path: config.svg.sprite,
-                contents: new Buffer(svg.svg)
-            }));
+            // Get data
+            var data = transformData(svg.data, config);
+            writeFiles(stream, config, svg.svg, data, cb);
 
-            // use the data to create some in-memory files and throw em down stream
-            cb(null);
         });
-
     });
 };
+
+/**
+ * @param stream
+ * @param config
+ * @param svg
+ * @param data
+ * @param cb
+ */
+function writeFiles(stream, config, svg, data, cb) {
+
+    var temps = getTemplates(config);
+
+    dust.compileFn(temps.css, "css", false);
+
+    dust.render("css", data, function (err, out) {
+
+        stream.push(new File({
+            cwd:  "./",
+            base: "./",
+            path: config.cssFile,
+            contents: new Buffer(out)
+        }));
+
+        stream.push(new File({
+            cwd:  "./",
+            base: "./",
+            path: config.svg.sprite,
+            contents: new Buffer(svg)
+        }));
+
+        cb(null);
+    });
+}

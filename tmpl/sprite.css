@@ -1,0 +1,8 @@
+{#common}.{common} {
+    background-repeat: no-repeat;
+    background-image: url("{svgPath}");
+}
+
+.no-svg .{common} {
+    background-image: url("{pngPath}");
+}{/common}
