@@ -9,9 +9,7 @@ var paths = {
 };
 
 var config = {
-    preview: {
-        "sprite": "sprites.html"
-    }
+    mode: "defs"
 };
 
 fs.src(paths.svgSrc)

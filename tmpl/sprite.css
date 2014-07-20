@@ -6,9 +6,9 @@
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../sprites/svg-sprite.svg");
+    background-image: url("{svgPath}");
     background-repeat: no-repeat;
-    background-size: {swidth}em {sheight}em;
+    background-size: {relWidth}em {relHeight}em;
 }
 
 .no-svg .{common}:before {
@@ -16,8 +16,8 @@
 }{/common}
 {#svg}
 .{#selector}{expression}:before{/selector} {
-    background-position: {positionX}em {positionY}em;
-    width: {width}em;
-    height: {height}em;
+    background-position: {relPositionX}em {relPositionY}em;
+    width: {relWidth}em;
+    height: {relHeight}em;
 }
 {/svg}
