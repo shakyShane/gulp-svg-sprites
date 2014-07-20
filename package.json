@@ -1,7 +1,7 @@
 {
   "name": "gulp-svg-sprites",
   "description": "Create SVG sprites with PNG fallbacks",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "homepage": "",
   "repository": {
     "type": "git",
@@ -21,16 +21,18 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "dependencies": {
     "lodash": "^2.4.1",
-    "phantomjs": "*",
     "svgo": "^0.4.4",
     "through2": "^0.4.1",
     "vinyl": "^0.2.3",
-    "gulp-util": "^2.2.14",
-    "svg2png": "^1.0.1"
+    "gulp-util": "^3.0.0",
+    "svg-sprite-data": "0.0.3",
+    "dust": "^0.3.0",
+    "dustjs-linkedin": "^2.4.0",
+    "q": "^1.0.1"
   },
   "keywords": [
     "svg",
@@ -44,6 +46,9 @@
     "gulp-jshint": "~1.4.0",
     "chai": "~1.9.0",
     "sinon": "~1.8.2",
-    "gulp-contribs": "0.0.2"
+    "gulp-contribs": "0.0.2",
+    "gulp-clean": "^0.3.1",
+    "gulp-svg2png": "^0.3.0",
+    "gulp-filter": "^0.5.0"
   }
 }

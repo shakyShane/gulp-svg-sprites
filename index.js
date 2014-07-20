@@ -1,38 +1,128 @@
-var svgutil   = require("./lib/svg-utils");
-var cssRender = require("./lib/css-render");
-var preview   = require("./lib/preview");
-var utils     = require("./lib/utils");
+var SpriteData = require("svg-sprite-data");
+var through2   = require("through2");
+var gutil      = require("gulp-util");
+var File       = gutil.File;
+var dust       = require("dustjs-linkedin");
+var fs         = require("fs");
+var Q          = require("q");
+var _          = require("lodash");
+var path       = require("path");
 
-var _        = require("lodash");
-var gutil    = require("gulp-util");
-var File     = gutil.File;
-var path     = require("path");
-var through2 = require("through2");
-var svg2png  = require("svg2png");
+/**
+ * Make Dust templates retain whitespace
+ * @param ctx
+ * @param node
+ * @returns {*}
+ */
+dust.optimizers.format = function(ctx, node) { return node; };
 
 var PLUGIN_NAME = "gulp-svg-sprites";
 
+/**
+ * Default configuration. Everything here can be overridden
+ */
 var defaults = {
-    className: ".%f",
+    common:    "icon",
+    selector:  "%f",
+    layout:    "vertical",
     svgId:     "%f",
-    cssFile:   "css/sprites.css",
+    cssFile:   "css/sprite.css",
     svgPath:   "../%f",
     pngPath:   "../%f",
     preview: {
-        sprite: "preview-svg-sprite.html",
-        defs: "preview-svg.html"
+        sprite:  "sprite.html",
+        defs:    "defs.html",
+        symbols: "symbols.html"
     },
     svg: {
-        sprite: "sprites/svg-sprite.svg",
-        defs: "sprites/svg-defs.svg"
+        sprite:  "svg/sprite.svg",
+        defs:    "svg/defs.svg",
+        symbols: "svg/symbols.svg"
     },
     refSize: 26,
     padding: 0,
-    defs: false,
+    dims: true,
     hideSvg: true,
-    generatePreview: true,
-    generateCSS: true
+    mode: "sprite",
+    transformData: transformData,
+    afterTransform: function (data, config) {
+        return data;
+    }
 };
+
+/**
+ * Default templates, can be overridden by supplying the same keys in the
+ * templates: { } option
+ */
+var templatePaths = {
+    css:            "/tmpl/sprite.css",
+    defs:           "/tmpl/defs.svg",
+    symbols:        "/tmpl/symbols.svg",
+    previewSprite:  "/tmpl/preview.html",
+    previewDefs:    "/tmpl/preview-defs.html",
+    previewSymbols: "/tmpl/preview-symbol.html"
+};
+
+/**
+ * Use user-provided templates first, defaults as fallback
+ * @param {Object} config
+ * @returns {Object}
+ */
+function getTemplates(config) {
+
+    var templates = {};
+
+    Object.keys(templatePaths).forEach(function (key) {
+        if (config.templates && config.templates[key]) {
+            templates[key] = config.templates[key];
+        } else {
+            templates[key] = fs.readFileSync(__dirname + templatePaths[key], "utf-8");
+        }
+    });
+
+    return templates;
+}
+
+/**
+ * Any last-minute data transformations before handing off to templates,
+ * can be overridden by supplying a 'transformData' option
+ * @param data
+ * @param config
+ * @returns {*}
+ */
+function transformData(data, config) {
+
+    data.svgPath = config.svgPath.replace("%f", config.svg.sprite);
+    data.pngPath = config.pngPath.replace("%f", config.svg.sprite.replace(/\.svg$/, ".png"));
+
+    data.svg = data.svg.map(function (item) {
+
+        item.relHeight = item.height/10;
+        item.relWidth  = item.width/10;
+
+        item.relPositionX = item.positionX/10;
+        item.relPositionY = item.positionY/10;
+        item.normal = true;
+
+        if (item.name.match(/~/g)) {
+            if (config.mode !== "sprite") {
+                return false;
+            } else {
+                item.name = item.name.replace("~", ":");
+                item.normal = false;
+            }
+        }
+
+        return item;
+    });
+
+    data.svg = data.svg.filter(function (item) { return item; });
+
+    data.relWidth  = data.swidth/10;
+    data.relHeight = data.sheight/10;
+
+    return data;
+}
 
 /**
  * Helper for correct plugin errors
@@ -44,12 +134,101 @@ function error(context, msg) {
 }
 
 /**
- * @returns {*}
+ * @param stream
+ * @param config
+ * @param svg
+ * @param data
+ * @param cb
  */
-module.exports.svg = function (config) {
+function writeFiles(stream, config, svg, data, cb) {
+
+    var temps = getTemplates(config);
+
+    data.config = config;
+
+    var promises = [];
+
+    if (!config.svg) {
+        cb(null);
+    }
+
+    // Create SVG sprite
+    if (config.mode === "sprite") {
+
+        stream.push(new File({
+            cwd:  "./",
+            base: "./",
+            path: config.svg.sprite,
+            contents: new Buffer(svg)
+        }));
+
+        if (config.cssFile) {
+            promises.push(makeFile(temps.css, config.cssFile, stream, data));
+        }
+
+        if (config.preview && config.preview.sprite) {
+            promises.push(makeFile(temps.previewSprite, config.preview.sprite, stream, data));
+        }
+
+        return Q.all(promises).then(cb.bind(null, null));
+    }
+
+    var template = "defs";
+    var preview  = "previewDefs";
 
 
-    var tasks = [];
+    if (config.mode === "symbols") {
+        template = "symbols";
+        preview  = "previewSymbols";
+    }
+
+    makeFile(temps[template], config.svg[template], stream, data).then(function (output) {
+
+        data.svgInline = output;
+
+        if (config.preview && config.preview[config.mode]) {
+            promises.push(makeFile(temps[preview], config.preview[template], stream, data));
+            Q.all(promises).then(cb);
+        } else {
+            cb(null);
+        }
+    });
+}
+
+/**
+ * @param template
+ * @param fileName
+ * @param stream
+ * @param data
+ * @returns {Promise.promise|*}
+ */
+function makeFile(template, fileName, stream, data) {
+
+    var deferred = Q.defer();
+    var id = _.uniqueId();
+
+    dust.compileFn(template, id, false);
+
+    dust.render(id, data, function (err, out) {
+
+        stream.push(new File({
+            cwd:  "./",
+            base: "./",
+            path: fileName,
+            contents: new Buffer(out)
+        }));
+
+        deferred.resolve(out);
+    });
+
+    return deferred.promise;
+}
+
+/**
+ * @returns {Function}
+ */
+module.exports = function (config) {
+
     config = _.merge(_.cloneDeep(defaults), config || {});
 
     // Backwards compatibility
@@ -60,72 +239,30 @@ module.exports.svg = function (config) {
         config.padding = config.unit;
     }
 
+    if (config.mode === "defs" || config.mode === "symbols") {
+        config.inline = true;
+    } else {
+        config.inline = false;
+    }
+
+    var spriter = new SpriteData(config);
+
     return through2.obj(function (file, enc, cb) {
 
-        var contents = file.contents.toString();
+        spriter.add(file.path, file.contents.toString());
 
-        svgutil.addSvgFile(contents, file, tasks, function () {
-            cb(null);
-        }.bind(this));
+        cb(null);
 
     }, function (cb) {
 
-        var combined    = svgutil.buildSVGSprite(config.classNameSuffix, tasks, config);
-        var css         = cssRender.render(combined.spriteData, config);
-
-        if (config.generatePreview) {
-            var previewPage = preview.render(css.elements, combined.content, config);
-
-            this.push(new File({
-                cwd:  "./",
-                base: "./",
-                path: config.defs ? config.preview.defs : config.preview.sprite,
-                contents: new Buffer(previewPage.svgSprite.content)
-            }));
-        }
-
-        this.push(new File({
-            cwd:  "./",
-            base: "./",
-            path: config.defs ? config.svg.defs : config.svg.sprite,
-            contents: new Buffer(combined.content)
-        }));
-
-        if (config.generateCSS) {
-            this.push(new File({
-                cwd:  "./",
-                base: "./",
-                path: config.cssFile,
-                contents: new Buffer(css.content)
-            }));
-        }
-        cb(null);
-    });
-};
-
-/**
- * Create the PNG Fallback
- */
-module.exports.png = function () {
-    return through2.obj(function (file, enc, cb) {
         var stream = this;
-        if (path.extname(file.path) === ".svg") {
 
-            if (file.contents.toString().indexOf(svgutil.templates.prefix) < 0) {
-                error(stream, "This SVG format is not supported");
-            }
+        spriter.compile(config, function (err, svg) {
 
-            var svgPath = path.resolve(file.path);
-            var pngPath = path.resolve(utils.swapFileName(file.path));
-
-            svg2png(svgPath, pngPath, function (err) {
-                if (err) {
-                    error(stream, "Could not create the PNG format");
-                }
-                return cb();
-            });
-        } else {
-            return cb();
-        }
+            // Get data
+            var data = config.transformData(svg.data, config);
+            data = config.afterTransform(data, config);
+            writeFiles(stream, config, svg.svg, data, cb.bind(null, null));
+        });
     });
 };

@@ -3,7 +3,7 @@ var jshint = require('gulp-jshint');
 var contribs = require('gulp-contribs');
 
 gulp.task('lint', function () {
-    gulp.src(['test/specs/**/*.js', '!test/fixtures/**', 'lib/*'])
+    gulp.src(['test/specs/**/*.js', '!test/fixtures/**', 'index.js'])
             .pipe(jshint('test/specs/.jshintrc'))
             .pipe(jshint.reporter('default'))
             .pipe(jshint.reporter('fail'))
