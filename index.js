@@ -2,6 +2,7 @@ var svgutil    = require("./lib/svg-utils");
 var cssRender  = require("./lib/css-render");
 var preview    = require("./lib/preview");
 var _          = require("lodash");
+var Q          = require("q");
 var fs         = require("fs");
 var utils      = require("./lib/utils");
 var dust       = require("dustjs-linkedin");
@@ -25,9 +26,9 @@ var PLUGIN_NAME = "gulp-svg-sprites";
 var defaults = {
     common: "icon",
     selector: "%f",
-    layout: "diagonal",
+    layout: "horizontal",
     dims: true,
-    svgId:     "%f",
+    svgId:     "svg-id-%f",
     cssFile:   "css/sprites.css",
     svgPath:   "../%f",
     pngPath:   "../%f",
@@ -48,7 +49,8 @@ var defaults = {
 };
 
 var templatePaths = {
-    css: "./tmpl/sprite.css"
+    css: "./tmpl/sprite.css",
+    preview: "./tmpl/preview.html"
 };
 
 /**
@@ -71,7 +73,7 @@ function getTemplates(config) {
 }
 
 /**
- * Any last-minute transformations before compiling templates
+ * Any last-minute data transformations before handing off to templates
  * @param data
  * @param config
  * @returns {*}
@@ -93,6 +95,7 @@ function transformData(data, config) {
 
     data.swidth  = data.swidth/10;
     data.sheight = data.sheight/10;
+
     return data;
 }
 
@@ -108,7 +111,7 @@ function error(context, msg) {
 /**
  * @returns {*}
  */
-module.exports.svg = function (config) {
+module.exports = function (config) {
 
 
     config = _.merge(_.cloneDeep(defaults), config || {});
@@ -133,7 +136,7 @@ module.exports.svg = function (config) {
 
         var stream = this;
 
-        spriter.compile(function (err, svg) {
+        spriter.compile(config, function (err, svg) {
 
             // Get data
             var data = transformData(svg.data, config);
@@ -154,24 +157,46 @@ function writeFiles(stream, config, svg, data, cb) {
 
     var temps = getTemplates(config);
 
-    dust.compileFn(temps.css, "css", false);
+    stream.push(new File({
+        cwd:  "./",
+        base: "./",
+        path: config.svg.sprite,
+        contents: new Buffer(svg)
+    }));
 
-    dust.render("css", data, function (err, out) {
+    data.config = config;
+
+    var css     = makeFile(temps.css, config.cssFile, stream, data);
+    var preview = makeFile(temps.preview, config.preview.sprite, stream, data);
+
+    Q.all([css, preview]).then(cb);
+}
+
+/**
+ * @param template
+ * @param fileName
+ * @param stream
+ * @param data
+ * @returns {Promise.promise|*}
+ */
+function makeFile(template, fileName, stream, data) {
+
+    var deferred = new Q.defer();
+    var id = _.uniqueId();
+
+    dust.compileFn(template, id, false);
+
+    dust.render(id, data, function (err, out) {
 
         stream.push(new File({
             cwd:  "./",
             base: "./",
-            path: config.cssFile,
+            path: fileName,
             contents: new Buffer(out)
         }));
 
-        stream.push(new File({
-            cwd:  "./",
-            base: "./",
-            path: config.svg.sprite,
-            contents: new Buffer(svg)
-        }));
-
-        cb(null);
+        deferred.resolve(fileName);
     });
+
+    return deferred.promise;
 }

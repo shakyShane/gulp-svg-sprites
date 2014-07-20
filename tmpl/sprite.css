@@ -11,7 +11,7 @@
     background-size: {swidth}em {sheight}em;
 }
 
-.no-svg .{common} {
+.no-svg .{common}:before {
     background-image: url("{pngPath}");
 }{/common}
 {#svg}
