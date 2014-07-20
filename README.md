@@ -159,7 +159,8 @@ gulp.task('sprites', function () {
 ```
 
 ##Advanced: Custom Templates
-Templates use Dustjs - checkout [their docs](https://github.com/linkedin/dustjs/wiki/Dust-Tutorial) for usage instructions.
+Templates use Dustjs - checkout [their docs](https://github.com/linkedin/dustjs/wiki/Dust-Tutorial) for usage instructions. Or take a look at the [default ones](https://github.com/shakyShane/gulp-svg-sprites/blob/master/tmpl/sprite.css) for tips.
+
 You can get your hands on JUST the SVG Data & provide your own templates. For example, if you want to provide
 your own template for the CSS output, you could do this:
 
