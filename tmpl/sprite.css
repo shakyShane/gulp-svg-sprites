@@ -1,8 +1,23 @@
 {#common}.{common} {
+    font-size: 10px;
+}
+
+.{common}:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../sprites/svg-sprite.svg");
     background-repeat: no-repeat;
-    background-image: url("{svgPath}");
+    background-size: {swidth}em {sheight}em;
 }
 
 .no-svg .{common} {
     background-image: url("{pngPath}");
 }{/common}
+{#svg}
+.{#selector}{expression}:before{/selector} {
+    background-position: {positionX}em {positionY}em;
+    width: {width}em;
+    height: {height}em;
+}
+{/svg}

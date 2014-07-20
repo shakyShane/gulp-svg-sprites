@@ -77,8 +77,22 @@ function getTemplates(config) {
  * @returns {*}
  */
 function transformData(data, config) {
+
     data.svgPath = config.svgPath.replace("%f", config.svg.sprite);
     data.pngPath = config.pngPath.replace("%f", config.svg.sprite.replace(/\.svg$/, ".png"));
+
+    data.svg = data.svg.map(function (item) {
+
+        item.height = item.height/10;
+        item.width  = item.width/10;
+        item.positionX  = item.positionX/10;
+        item.positionY  = item.positionY/10;
+
+        return item;
+    });
+
+    data.swidth  = data.swidth/10;
+    data.sheight = data.sheight/10;
     return data;
 }
 
