@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+var gulp    = require('gulp');
 var jshint = require('gulp-jshint');
 var contribs = require('gulp-contribs');
 
@@ -17,23 +17,11 @@ gulp.task('contribs', function () {
 
 gulp.task('default', ['lint']);
 
-var svgSprites = require("./index");
+gulp.task("docs", function () {
 
-var svg = svgSprites.svg;
-var png = svgSprites.png;
+    var yuidoc = require("gulp-yuidoc");
 
-var paths = {
-    svgSrc: ["test/fixtures/svg/*.svg"],
-    svgDest: "./test/fixtures"
-};
-
-var config = {
-    svgId: "svg-%f-icon"
-};
-
-gulp.task('sprites', function () {
-    gulp.src(paths.svgSrc)
-        .pipe(svg(config))
-        .pipe(gulp.dest(paths.svgDest))
-        .pipe(png())
+    gulp.src(["./index.js"])
+        .pipe(yuidoc.parser({spaces: 4}))
+        .pipe(gulp.dest("./doc"));
 });

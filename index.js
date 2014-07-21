@@ -19,32 +19,145 @@ dust.optimizers.format = function(ctx, node) { return node; };
 var PLUGIN_NAME = "gulp-svg-sprites";
 
 /**
+ * @module gulp-svg-sprite.options
  * Default configuration. Everything here can be overridden
  */
 var defaults = {
+    /**
+     *
+     * By default, the class `icon` will be used as the common class.
+     * but you can also choose your own
+     *
+     * @property common
+     * @type string
+     * @default icon
+     */
     common:    "icon",
+    /**
+     *
+     * Easily add prefixes/suffixes to the generated CSS classnames. The `%f` will
+     * be replaced by the filename
+     *
+     * @property selector
+     * @type string
+     * @default %f
+     */
     selector:  "%f",
+    /**
+     *
+     * Define the layout of the items in the sprite. Can be either
+     * "vertical", "horizontal" or "diagonal"
+     *
+     * @property layout
+     * @type string
+     * @default vertical
+     */
     layout:    "vertical",
+    /**
+     *
+     * In `symbols` or `defs` mode, you'll probably want to override the ID on each element.
+     * The filename will be used as a default, but can be overridden.
+     *
+     * @property svgId
+     * @type string
+     * @default %f
+     */
     svgId:     "%f",
+    /**
+     *
+     * Define the path & filename of the CSS file. Using this, you could easily create a SASS
+     * partial for example
+     *
+     * @property cssFile
+     * @type string
+     * @default css/sprite.css
+     */
     cssFile:   "css/sprite.css",
+    /**
+     *
+     * Define the path to the SVG file that be written to the CSS file. Note: this does NOT alter
+     * the actual write-path of the SVG file. See the `svg` option for that.
+     *
+     * @property svgPath
+     * @type string
+     * @default ../%f
+     */
     svgPath:   "../%f",
+    /**
+     *
+     * If you're creating a PNG fallback, define the path to it that be written to the CSS file.
+     *
+     * @property pngPath
+     * @type string
+     * @default ../%f
+     */
     pngPath:   "../%f",
+    /**
+     *
+     * Paths to preview files.
+     *
+     * @property preview
+     * @param {String} [sprite=sprite.html]
+     * @param {String} [defs=defs.html]
+     * @param {String} [symbols=symbols.html]
+     */
     preview: {
         sprite:  "sprite.html",
         defs:    "defs.html",
         symbols: "symbols.html"
     },
+    /**
+     *
+     * Paths to SVG files.
+     *
+     * @property preview
+     * @param {String} [sprite=svg/sprite.svg]
+     * @param {String} [defs=svg/defs.svg]
+     * @param {String} [symbols=svg/symbols.svg]
+     */
     svg: {
         sprite:  "svg/sprite.svg",
         defs:    "svg/defs.svg",
         symbols: "svg/symbols.svg"
     },
     refSize: 26,
+    /**
+     *
+     * Add padding to sprite items
+     *
+     * @property padding
+     * @type number
+     * @default 0
+     */
     padding: 0,
+    /**
+     *
+     * Define which mode to run in. Can be either "sprite", "defs" or "symbols"
+     *
+     * @property mode
+     * @type string
+     * @default sprite
+     */
+    mode: "sprite",
     dims: true,
     hideSvg: true,
-    mode: "sprite",
+    /**
+     *
+     * Override the default data transforms
+     *
+     * @property transformData
+     * @type function
+     * @default transformData
+     */
     transformData: transformData,
+    /**
+     *
+     * Apply additional data transforms AFTER the defaults
+     *
+     * @property afterTransform
+     * @type function
+     * @default afterTransform
+     */
     afterTransform: function (data, config) {
         return data;
     }
