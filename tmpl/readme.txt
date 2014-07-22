@@ -1,0 +1,28 @@
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+{#options}
+<tr>
+    <td><b>{name}</b></td>
+    <td>{type}</td>
+    <td>{#default}<code>{default}</code>{/default}</td>
+    <td>{description|s}</td>
+</tr>
+{#subprops}
+<tr>
+    <td> {name}</td>
+    <td>{type}</td>
+    <td>{#optdefault}<code>{optdefault}</code>{/optdefault}</td>
+    <td></td>
+</tr>
+{/subprops}
+{/options}
+</tbody>
+</table>

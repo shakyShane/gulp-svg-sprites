@@ -48,76 +48,76 @@
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
             "line": 26,
+            "description": "Define which mode to run in. Can be either \"sprite\", \"defs\" or \"symbols\"",
+            "itemtype": "property",
+            "name": "mode",
+            "type": "String",
+            "default": "sprite",
+            "class": "",
+            "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
+        },
+        {
+            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
+            "line": 35,
             "description": "By default, the class `icon` will be used as the common class.\n but you can also choose your own",
             "itemtype": "property",
             "name": "common",
-            "type": "string",
+            "type": "String",
             "default": "icon",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 36,
+            "line": 45,
             "description": "Easily add prefixes/suffixes to the generated CSS classnames. The `%f` will\n be replaced by the filename",
             "itemtype": "property",
             "name": "selector",
-            "type": "string",
+            "type": "String",
             "default": "%f",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 46,
+            "line": 55,
             "description": "Define the layout of the items in the sprite. Can be either\n \"vertical\", \"horizontal\" or \"diagonal\"",
             "itemtype": "property",
             "name": "layout",
-            "type": "string",
+            "type": "String",
             "default": "vertical",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 56,
+            "line": 65,
             "description": "In `symbols` or `defs` mode, you'll probably want to override the ID on each element.\n The filename will be used as a default, but can be overridden.",
             "itemtype": "property",
             "name": "svgId",
-            "type": "string",
+            "type": "String",
             "default": "%f",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 66,
+            "line": 75,
             "description": "Define the path & filename of the CSS file. Using this, you could easily create a SASS\n partial for example",
             "itemtype": "property",
             "name": "cssFile",
-            "type": "string",
+            "type": "String",
             "default": "css/sprite.css",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 76,
+            "line": 85,
             "description": "Define the path to the SVG file that be written to the CSS file. Note: this does NOT alter\n the actual write-path of the SVG file. See the `svg` option for that.",
             "itemtype": "property",
             "name": "svgPath",
-            "type": "string",
-            "default": "../%f",
-            "class": "",
-            "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
-        },
-        {
-            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 86,
-            "description": "If you're creating a PNG fallback, define the path to it that be written to the CSS file.",
-            "itemtype": "property",
-            "name": "pngPath",
-            "type": "string",
+            "type": "String",
             "default": "../%f",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
@@ -125,9 +125,21 @@
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
             "line": 95,
+            "description": "If you're creating a PNG fallback, define the path to it that be written to the CSS file.",
+            "itemtype": "property",
+            "name": "pngPath",
+            "type": "String",
+            "default": "../%f",
+            "class": "",
+            "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
+        },
+        {
+            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
+            "line": 104,
             "description": "Paths to preview files.",
             "itemtype": "property",
             "name": "preview",
+            "type": "Object",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden",
             "subprops": [
@@ -156,10 +168,11 @@
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 109,
+            "line": 119,
             "description": "Paths to SVG files.",
             "itemtype": "property",
-            "name": "preview",
+            "name": "svg",
+            "type": "Object",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden",
             "subprops": [
@@ -188,58 +201,47 @@
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 124,
+            "line": 135,
             "description": "Add padding to sprite items",
             "itemtype": "property",
             "name": "padding",
-            "type": "number",
+            "type": "Number",
             "default": "0",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 133,
-            "description": "Define which mode to run in. Can be either \"sprite\", \"defs\" or \"symbols\"",
-            "itemtype": "property",
-            "name": "mode",
-            "type": "string",
-            "default": "sprite",
-            "class": "",
-            "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
-        },
-        {
-            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 144,
+            "line": 146,
             "description": "Override the default data transforms",
             "itemtype": "property",
             "name": "transformData",
-            "type": "function",
+            "type": "Function",
             "default": "transformData",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 153,
+            "line": 155,
             "description": "Apply additional data transforms AFTER the defaults",
             "itemtype": "property",
             "name": "afterTransform",
-            "type": "function",
+            "type": "Function",
             "default": "afterTransform",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 166,
+            "line": 168,
             "description": "Default templates, can be overridden by supplying the same keys in the\ntemplates: { } option",
             "class": "",
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 179,
+            "line": 181,
             "description": "Use user-provided templates first, defaults as fallback",
             "params": [
                 {
@@ -257,7 +259,7 @@
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 199,
+            "line": 201,
             "description": "Any last-minute data transformations before handing off to templates,\ncan be overridden by supplying a 'transformData' option",
             "params": [
                 {
@@ -278,7 +280,7 @@
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 240,
+            "line": 242,
             "description": "Helper for correct plugin errors",
             "params": [
                 {
@@ -295,7 +297,7 @@
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 249,
+            "line": 251,
             "params": [
                 {
                     "name": "stream",
@@ -323,7 +325,7 @@
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 311,
+            "line": 313,
             "params": [
                 {
                     "name": "template",
@@ -351,7 +353,7 @@
         },
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 340,
+            "line": 342,
             "return": {
                 "description": "",
                 "type": "Function"
@@ -367,19 +369,19 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:179"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:181"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:199"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:201"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:311"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:313"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:340"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:342"
         },
         {
             "message": "Missing item type\nMake Dust templates retain whitespace",
@@ -387,31 +389,31 @@
         },
         {
             "message": "Missing item type\nDefault templates, can be overridden by supplying the same keys in the\ntemplates: { } option",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:166"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:168"
         },
         {
             "message": "Missing item type\nUse user-provided templates first, defaults as fallback",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:179"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:181"
         },
         {
             "message": "Missing item type\nAny last-minute data transformations before handing off to templates,\ncan be overridden by supplying a 'transformData' option",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:199"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:201"
         },
         {
             "message": "Missing item type\nHelper for correct plugin errors",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:240"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:242"
         },
         {
             "message": "Missing item type",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:249"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:251"
         },
         {
             "message": "Missing item type",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:311"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:313"
         },
         {
             "message": "Missing item type",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:340"
+            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:342"
         }
     ]
 }
