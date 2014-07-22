@@ -25,11 +25,20 @@ var PLUGIN_NAME = "gulp-svg-sprites";
 var defaults = {
     /**
      *
+     * Define which mode to run in. Can be either "sprite", "defs" or "symbols"
+     *
+     * @property mode
+     * @type String
+     * @default sprite
+     */
+    mode: "sprite",
+    /**
+     *
      * By default, the class `icon` will be used as the common class.
      * but you can also choose your own
      *
      * @property common
-     * @type string
+     * @type String
      * @default icon
      */
     common:    "icon",
@@ -39,7 +48,7 @@ var defaults = {
      * be replaced by the filename
      *
      * @property selector
-     * @type string
+     * @type String
      * @default %f
      */
     selector:  "%f",
@@ -49,7 +58,7 @@ var defaults = {
      * "vertical", "horizontal" or "diagonal"
      *
      * @property layout
-     * @type string
+     * @type String
      * @default vertical
      */
     layout:    "vertical",
@@ -59,7 +68,7 @@ var defaults = {
      * The filename will be used as a default, but can be overridden.
      *
      * @property svgId
-     * @type string
+     * @type String
      * @default %f
      */
     svgId:     "%f",
@@ -69,7 +78,7 @@ var defaults = {
      * partial for example
      *
      * @property cssFile
-     * @type string
+     * @type String
      * @default css/sprite.css
      */
     cssFile:   "css/sprite.css",
@@ -79,7 +88,7 @@ var defaults = {
      * the actual write-path of the SVG file. See the `svg` option for that.
      *
      * @property svgPath
-     * @type string
+     * @type String
      * @default ../%f
      */
     svgPath:   "../%f",
@@ -88,7 +97,7 @@ var defaults = {
      * If you're creating a PNG fallback, define the path to it that be written to the CSS file.
      *
      * @property pngPath
-     * @type string
+     * @type String
      * @default ../%f
      */
     pngPath:   "../%f",
@@ -97,6 +106,7 @@ var defaults = {
      * Paths to preview files.
      *
      * @property preview
+     * @type Object
      * @param {String} [sprite=sprite.html]
      * @param {String} [defs=defs.html]
      * @param {String} [symbols=symbols.html]
@@ -110,7 +120,8 @@ var defaults = {
      *
      * Paths to SVG files.
      *
-     * @property preview
+     * @property svg
+     * @type Object
      * @param {String} [sprite=svg/sprite.svg]
      * @param {String} [defs=svg/defs.svg]
      * @param {String} [symbols=svg/symbols.svg]
@@ -126,19 +137,10 @@ var defaults = {
      * Add padding to sprite items
      *
      * @property padding
-     * @type number
+     * @type Number
      * @default 0
      */
     padding: 0,
-    /**
-     *
-     * Define which mode to run in. Can be either "sprite", "defs" or "symbols"
-     *
-     * @property mode
-     * @type string
-     * @default sprite
-     */
-    mode: "sprite",
     dims: true,
     hideSvg: true,
     /**
@@ -146,7 +148,7 @@ var defaults = {
      * Override the default data transforms
      *
      * @property transformData
-     * @type function
+     * @type Function
      * @default transformData
      */
     transformData: transformData,
@@ -155,7 +157,7 @@ var defaults = {
      * Apply additional data transforms AFTER the defaults
      *
      * @property afterTransform
-     * @type function
+     * @type Function
      * @default afterTransform
      */
     afterTransform: function (data, config) {

@@ -206,6 +206,185 @@ gulp.task('sprites', function () {
 
 You can override all the [templates used here](https://github.com/shakyShane/gulp-svg-sprites/blob/master/index.js#L57-L64) in the same way.
 
+## Options
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td><b>mode</b></td>
+    <td>String</td>
+    <td><code>sprite</code></td>
+    <td><p>Define which mode to run in. Can be either &quot;sprite&quot;, &quot;defs&quot; or &quot;symbols&quot;</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>common</b></td>
+    <td>String</td>
+    <td><code>icon</code></td>
+    <td><p>By default, the class <code>icon</code> will be used as the common class.
+ but you can also choose your own</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>selector</b></td>
+    <td>String</td>
+    <td><code>%f</code></td>
+    <td><p>Easily add prefixes/suffixes to the generated CSS classnames. The <code>%f</code> will
+ be replaced by the filename</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>layout</b></td>
+    <td>String</td>
+    <td><code>vertical</code></td>
+    <td><p>Define the layout of the items in the sprite. Can be either
+ &quot;vertical&quot;, &quot;horizontal&quot; or &quot;diagonal&quot;</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>svgId</b></td>
+    <td>String</td>
+    <td><code>%f</code></td>
+    <td><p>In <code>symbols</code> or <code>defs</code> mode, you&#39;ll probably want to override the ID on each element.
+ The filename will be used as a default, but can be overridden.</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>cssFile</b></td>
+    <td>String</td>
+    <td><code>css/sprite.css</code></td>
+    <td><p>Define the path &amp; filename of the CSS file. Using this, you could easily create a SASS
+ partial for example</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>svgPath</b></td>
+    <td>String</td>
+    <td><code>../%f</code></td>
+    <td><p>Define the path to the SVG file that be written to the CSS file. Note: this does NOT alter
+ the actual write-path of the SVG file. See the <code>svg</code> option for that.</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>pngPath</b></td>
+    <td>String</td>
+    <td><code>../%f</code></td>
+    <td><p>If you&#39;re creating a PNG fallback, define the path to it that be written to the CSS file.</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>preview</b></td>
+    <td>Object</td>
+    <td></td>
+    <td><p>Paths to preview files.</p>
+</td>
+</tr>
+
+<tr>
+    <td> preview.sprite</td>
+    <td>String</td>
+    <td><code>sprite.html</code></td>
+    <td></td>
+</tr>
+
+<tr>
+    <td> preview.defs</td>
+    <td>String</td>
+    <td><code>defs.html</code></td>
+    <td></td>
+</tr>
+
+<tr>
+    <td> preview.symbols</td>
+    <td>String</td>
+    <td><code>symbols.html</code></td>
+    <td></td>
+</tr>
+
+
+<tr>
+    <td><b>svg</b></td>
+    <td>Object</td>
+    <td></td>
+    <td><p>Paths to SVG files.</p>
+</td>
+</tr>
+
+<tr>
+    <td> svg.sprite</td>
+    <td>String</td>
+    <td><code>svg/sprite.svg</code></td>
+    <td></td>
+</tr>
+
+<tr>
+    <td> svg.defs</td>
+    <td>String</td>
+    <td><code>svg/defs.svg</code></td>
+    <td></td>
+</tr>
+
+<tr>
+    <td> svg.symbols</td>
+    <td>String</td>
+    <td><code>svg/symbols.svg</code></td>
+    <td></td>
+</tr>
+
+
+<tr>
+    <td><b>padding</b></td>
+    <td>Number</td>
+    <td><code>0</code></td>
+    <td><p>Add padding to sprite items</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>transformData</b></td>
+    <td>Function</td>
+    <td><code>transformData</code></td>
+    <td><p>Override the default data transforms</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>afterTransform</b></td>
+    <td>Function</td>
+    <td><code>afterTransform</code></td>
+    <td><p>Apply additional data transforms AFTER the defaults</p>
+</td>
+</tr>
+
+
+</tbody>
+</table>
 ## License
 Copyright (c) 2014 Shane Osbourne
 Licensed under the MIT license.
