@@ -212,8 +212,8 @@ function transformData(data, config) {
 
     data.svg = data.svg.map(function (item) {
 
-        item.relHeight = item.height/10;
-        item.relWidth  = item.width/10;
+	item.relHeight = item.height/10 + (2*config.padding)/10;
+	item.relWidth  = item.width/10 + (2*config.padding)/10;
 
         item.relPositionX = item.positionX/10;
         item.relPositionY = item.positionY/10;
