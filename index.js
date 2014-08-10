@@ -223,9 +223,12 @@ function transformData(data, config) {
             if (config.mode !== "sprite") {
                 return false;
             } else {
-                item.name = item.name.replace("~", ":");
+                var segs  = item.name.split("~");
+                item.name = item.selector[0].expression + ":" + segs[1];
                 item.normal = false;
             }
+        } else {
+            item.name = item.selector[0].expression;
         }
 
         return item;
