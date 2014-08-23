@@ -1,4 +1,4 @@
-# gulp-svg-sprites
+# gulp-svg-sprites [![Build Status](https://travis-ci.org/shakyShane/gulp-svg-sprites.svg?branch=master)](https://travis-ci.org/shakyShane/gulp-svg-sprites)
 
 Gulp plugin for working with SVGs
 
