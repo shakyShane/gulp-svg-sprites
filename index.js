@@ -288,9 +288,9 @@ function writeFiles(stream, config, svg, data, cb) {
 
         if (config.cssFile) {
             if ( config.cssFileObj ) {
-                for (var i = config.cssFileObj.length - 1; i >= 0; i--) {
-                    promises.push( makeFile( temps.css, config.cssFileObj[i], stream, data) );
-                }
+                _(config.cssFileObj).forEach(function(cssFile) { 
+                    promises.push(makeFile( temps.css, cssFile, stream, data));
+                });
             } else {
                 promises.push(makeFile(temps.css, config.cssFile, stream, data));
             }
