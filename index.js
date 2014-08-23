@@ -208,7 +208,7 @@ function getTemplates(config) {
 function transformData(data, config) {
     
     /* Set preview css file to first submitted path */
-    if ( typeof(config.cssFile) === 'object' ) {
+    if ( typeof(config.cssFile) === "object" ) {
         config.cssFileObj = config.cssFile;
         config.cssFile = config.cssFile[0];
     }
