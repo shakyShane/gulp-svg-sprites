@@ -206,6 +206,12 @@ function getTemplates(config) {
  * @returns {*}
  */
 function transformData(data, config) {
+    
+    /* Set preview css file to first submitted path */
+    if ( typeof(config.cssFile) === 'object' ) {
+        config.cssFileObj = config.cssFile;
+        config.cssFile = config.cssFile[0];
+    }
 
     data.svgPath = config.svgPath.replace("%f", config.svg.sprite);
     data.pngPath = config.pngPath.replace("%f", config.svg.sprite.replace(/\.svg$/, ".png"));
@@ -281,7 +287,13 @@ function writeFiles(stream, config, svg, data, cb) {
         }));
 
         if (config.cssFile) {
-            promises.push(makeFile(temps.css, config.cssFile, stream, data));
+            if ( config.cssFileObj ) {
+                for (var i = config.cssFileObj.length - 1; i >= 0; i--) {
+                    promises.push( makeFile( temps.css, config.cssFileObj[i], stream, data) );
+                }
+            } else {
+                promises.push(makeFile(temps.css, config.cssFile, stream, data));
+            }
         }
 
         if (config.preview && config.preview.sprite) {
