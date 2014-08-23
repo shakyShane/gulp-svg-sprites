@@ -207,8 +207,8 @@ function getTemplates(config) {
  */
 function transformData(data, config) {
     
-    /* Set preview css file to first submitted path */
-    if ( typeof(config.cssFile) === "object" ) {
+    // Set preview css file to first submitted path
+    if (typeof(config.cssFile) === "object") {
         config.cssFileObj = config.cssFile;
         config.cssFile = config.cssFile[0];
     }
@@ -288,9 +288,9 @@ function writeFiles(stream, config, svg, data, cb) {
 
         if (config.cssFile) {
             if ( config.cssFileObj ) {
-                _(config.cssFileObj).forEach(function(num) { 
-                    promises.push(makeFile( temps.css, config.cssFileObj[i], stream, data));
-                });
+                for (var i = config.cssFileObj.length - 1; i >= 0; i--) {
+                    promises.push( makeFile( temps.css, config.cssFileObj[i], stream, data) );
+                }
             } else {
                 promises.push(makeFile(temps.css, config.cssFile, stream, data));
             }
