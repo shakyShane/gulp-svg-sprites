@@ -13,6 +13,8 @@ Install it locally to your project.
 $ npm install gulp-svg-sprites
 ```
 
+**Windows note:** Make sure, you also have all [prerequisities for node-gyp](https://github.com/TooTallNate/node-gyp#installation).
+
 ##Usage
 With no configuration, `gulp-svg-sprites` will create the following files:
 
