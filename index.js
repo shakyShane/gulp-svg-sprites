@@ -162,7 +162,25 @@ var defaults = {
      */
     afterTransform: function (data, config) {
         return data;
-    }
+    },
+    /**
+     *
+     * Filename of generated JS loader script, for defs and symbols mode.
+     *
+     * @property loader
+     * @type String
+     * @default loader.js
+     */
+    loader: "loader.js",
+    /**
+     *
+     * Path in loader script to the SVG file to load.
+     *
+     * @property loaderPath
+     * @type String
+     * @default %f
+     */
+    loaderPath: "%f"
 };
 
 /**
@@ -175,7 +193,8 @@ var templatePaths = {
     symbols:        "/tmpl/symbols.svg",
     previewSprite:  "/tmpl/preview.html",
     previewDefs:    "/tmpl/preview-defs.html",
-    previewSymbols: "/tmpl/preview-symbol.html"
+    previewSymbols: "/tmpl/preview-symbol.html",
+    loader:         "/tmpl/loader.js"
 };
 
 /**
@@ -209,6 +228,8 @@ function transformData(data, config) {
 
     data.svgPath = config.svgPath.replace("%f", config.svg.sprite);
     data.pngPath = config.pngPath.replace("%f", config.svg.sprite.replace(/\.svg$/, ".png"));
+    data.loaderPath = (config.mode === "symbols") ? config.loaderPath.replace("%f", config.svg.symbols)
+        : config.loaderPath.replace("%f", config.svg.defs);
 
     data.svg = data.svg.map(function (item) {
 
@@ -304,8 +325,15 @@ function writeFiles(stream, config, svg, data, cb) {
 
         data.svgInline = output;
 
+        if (config.loader) {
+            promises.push(makeFile(temps.loader, config.loader, stream, data));
+        }
+
         if (config.preview && config.preview[config.mode]) {
             promises.push(makeFile(temps[preview], config.preview[template], stream, data));
+        }
+
+        if (promises.length) {
             Q.all(promises).then(cb);
         } else {
             cb(null);
