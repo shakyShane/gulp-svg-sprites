@@ -60,7 +60,7 @@ gulp.task('sprites', function () {
 
 ##Symbols mode
 Pass `mode: "symbols"` to output SVG data as this [CSS TRICKS article](http://css-tricks.com/svg-symbol-good-choice-icons/) outlines.
-You'll get an SVG file & a preview file showing how to use it.
+You'll get an SVG file, a loader script, and a preview file showing how to use it.
 
 ```js
 gulp.task('sprites', function () {
@@ -72,7 +72,7 @@ gulp.task('sprites', function () {
 
 ##Defs mode
 Pass `mode: "defs"` to output SVG data as this [CSS TRICKS article](http://css-tricks.com/svg-sprites-use-better-icon-fonts/) outlines.
-You'll get an SVG file & a preview file showing how to use it.
+You'll get an SVG file, a loader script, and a preview file showing how to use it.
 
 ```js
 gulp.task('sprites', function () {
@@ -108,6 +108,19 @@ gulp.task('sprites', function () {
 });
 ```
 
+###Loader Path
+Tell the loader script the relative path to your SVG file from wherever you are going to use the script -- the path the XML request will need to use to fetch the SVG. This is handy because you probably should be copying-and-pasting the script into existing JS or directly into your markup, rather than using the generated file as it is.
+
+```js
+gulp.task('sprites', function () {
+    return gulp.src('assets/svg/*.svg')
+        .pipe(svgSprite({
+            loaderPath: 'assets/svg/symbols.svg'
+        }))
+        .pipe(gulp.dest('assets'));
+});
+``` 
+
 ###Custom filenames
 Change the generated filenames with ease. For example, if you want to create a `scss` partial instead, you could just do:
  
@@ -128,6 +141,15 @@ gulp.task('sprites', function () {
             svg: {
                 sprite: "svg.svg"
             }
+        }))
+        .pipe(gulp.dest("assets"));
+});
+
+// Custom loader filename
+gulp.task('sprites', function () {
+    return gulp.src('assets/svg/*.svg')
+        .pipe(svgSprite({
+            loader: "customLoader.js"
         }))
         .pipe(gulp.dest("assets"));
 });
