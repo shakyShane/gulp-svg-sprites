@@ -189,9 +189,22 @@ to the data returned from [svg-sprite-data](https://github.com/shakyShane/svg-sp
 this library applies - so use with caution. (if you want to modify the data aswell after our internal modifications, use `afterTransform` instead).
 
 ```js
+
+// Synchronous
 var config = {
     transformData: function (data, config) {
         return data; // modify the data and return it
+    },
+    templates: {
+        css: require("fs").readFileSync("./path/to/your/template.css", "utf-8")
+    }
+};
+
+// Asynchronous
+var config = {
+    asyncTransforms: true,
+    transformData: function (data, config, done) {
+        done(data); // modify the data and pass it
     },
     templates: {
         css: require("fs").readFileSync("./path/to/your/template.css", "utf-8")
@@ -206,7 +219,7 @@ gulp.task('sprites', function () {
 
 ```
 
-You can override all the [templates used here](https://github.com/shakyShane/gulp-svg-sprites/blob/master/index.js#L172-L179) in the same way.
+You can override all the [templates used here](https://github.com/shakyShane/gulp-svg-sprites/blob/master/index.js#L172-L179) in the same way. If you are doing any async work in these callbacks set `asyncTransforms` to `true` in the config. 
 
 ## Options
 <table>
@@ -384,6 +397,14 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
 </td>
 </tr>
 
+<tr>
+    <td><b>asyncTransforms</b></td>
+    <td>Boolean</td>
+    <td><code>false</code></td>
+    <td><p>Allows your transforms to be performed asynchronously. This will give you a <code>done</code> callback
+ which you pass your transformed data.</p>
+</td>
+</tr>
 
 </tbody>
 </table>
