@@ -145,6 +145,15 @@ var defaults = {
     hideSvg: true,
     /**
      *
+     * Use async transforms
+     *
+     * @property asyncTransforms
+     * @type Boolean
+     * @default false
+     */
+    asyncTransforms: false,
+    /**
+     *
      * Override the default data transforms
      *
      * @property transformData
@@ -160,7 +169,10 @@ var defaults = {
      * @type Function
      * @default afterTransform
      */
-    afterTransform: function (data, config) {
+    afterTransform: function (data, config, done) {
+        if (config.asyncTransforms) {
+            return done(data);
+        }
         return data;
     }
 };
@@ -205,7 +217,7 @@ function getTemplates(config) {
  * @param config
  * @returns {*}
  */
-function transformData(data, config) {
+function transformData(data, config, done) {
 
     data.svgPath = config.svgPath.replace("%f", config.svg.sprite);
     data.pngPath = config.pngPath.replace("%f", config.svg.sprite.replace(/\.svg$/, ".png"));
@@ -239,6 +251,9 @@ function transformData(data, config) {
     data.relWidth  = data.swidth/10;
     data.relHeight = data.sheight/10;
 
+    if (config.asyncTransforms) {
+        return done(data);
+    }
     return data;
 }
 
@@ -376,11 +391,21 @@ module.exports = function (config) {
         var stream = this;
 
         spriter.compile(config, function (err, svg) {
+            var onDoneTransformData = function (data) {
+                config.afterTransform(data, config, onDoneAfterTransformData);
+            };
+            var onDoneAfterTransformData = function (data) {
+                writeFiles(stream, config, svg.svg, data, cb.bind(null, null));
+            };
 
-            // Get data
-            var data = config.transformData(svg.data, config);
-            data = config.afterTransform(data, config);
-            writeFiles(stream, config, svg.svg, data, cb.bind(null, null));
+            if (config.asyncTransforms) {
+                config.transformData(svg.data, config, onDoneTransformData);
+            } else {
+                // Get data
+                var data = config.transformData(svg.data, config);
+                data = config.afterTransform(data, config);
+                writeFiles(stream, config, svg.svg, data, cb.bind(null, null));
+            }
         });
     });
 };
