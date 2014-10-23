@@ -59,4 +59,17 @@ describe("Sending Correct files downstream", function () {
             "index.html"
         ], done);
     });
+
+    it("works with async transforms", function (done) {
+
+        var config = {
+            asyncTransforms: true
+        };
+
+        streamTester(config, [
+            "svg/sprite.svg",
+            "css/sprite.css",
+            "sprite.html"
+        ], done);
+    });
 });
