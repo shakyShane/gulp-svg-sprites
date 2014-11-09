@@ -145,6 +145,15 @@ var defaults = {
     hideSvg: true,
     /**
      *
+     * Set the base font-size for the icon element
+     *
+     * @property baseSize
+     * @type Number
+     * @default 10
+     */
+    baseSize: 10,
+    /**
+     *
      * Override the default data transforms
      *
      * @property transformData
@@ -207,16 +216,18 @@ function getTemplates(config) {
  */
 function transformData(data, config) {
 
+    data.baseSize = config.baseSize;
+
     data.svgPath = config.svgPath.replace("%f", config.svg.sprite);
     data.pngPath = config.pngPath.replace("%f", config.svg.sprite.replace(/\.svg$/, ".png"));
 
     data.svg = data.svg.map(function (item) {
 
-        item.relHeight = item.height/10;
-        item.relWidth  = item.width/10;
+        item.relHeight = item.height/config.baseSize;
+        item.relWidth  = item.width/config.baseSize;
 
-        item.relPositionX = item.positionX/10 - config.padding/10;
-        item.relPositionY = item.positionY/10 - config.padding/10;
+        item.relPositionX = item.positionX/config.baseSize - config.padding/config.baseSize;
+        item.relPositionY = item.positionY/config.baseSize - config.padding/config.baseSize;
         item.normal = true;
 
         if (item.name.match(/~/g)) {
@@ -236,8 +247,8 @@ function transformData(data, config) {
 
     data.svg = data.svg.filter(function (item) { return item; });
 
-    data.relWidth  = data.swidth/10;
-    data.relHeight = data.sheight/10;
+    data.relWidth  = data.swidth/config.baseSize;
+    data.relHeight = data.sheight/config.baseSize;
 
     return data;
 }
