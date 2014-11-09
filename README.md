@@ -40,7 +40,7 @@ Then, if you had a `facebook.svg` file, you'd be able to use the following marku
 
 ##PNG fallback
 You can easily support old browsers by piping the new SVG sprite through to another gulp task. There will be a
-`no-svg` class generated automatically in the CSS, so you'll just need to use something like Modernizr 
+`no-svg` class generated automatically in the CSS, so you'll just need to use something like Modernizr
 to set the `no-svg` class on the `<body>` tag of your website.
 
 ```js
@@ -84,7 +84,7 @@ gulp.task('sprites', function () {
 
 ###Custom Selectors
 By default, the filename will be used as the selector in the CSS, but this is how you'd override it (the `%f` will be replaced with the filename)
- 
+
 ```js
 gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
@@ -97,7 +97,7 @@ gulp.task('sprites', function () {
 
 ###Custom IDs
 With the `symbols` or `defs` mode, it's probably the ID you'll want to override. No problem.
- 
+
 ```js
 gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
@@ -110,7 +110,7 @@ gulp.task('sprites', function () {
 
 ###Custom filenames
 Change the generated filenames with ease. For example, if you want to create a `scss` partial instead, you could just do:
- 
+
 ```js
 // Custom CSS filename
 gulp.task('sprites', function () {
@@ -120,7 +120,7 @@ gulp.task('sprites', function () {
         }))
         .pipe(gulp.dest("assets"));
 });
-        
+
 // Custom SVG filename
 gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
@@ -131,7 +131,7 @@ gulp.task('sprites', function () {
         }))
         .pipe(gulp.dest("assets"));
 });
-        
+
 // Custom Preview filename + Custom SVG filename
 gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
@@ -147,9 +147,22 @@ gulp.task('sprites', function () {
 });
 ```
 
+###Base Size
+Set the font-size of the .icon class. Just pass a plain number, no units.
+
+```js
+gulp.task('sprites', function () {
+    return gulp.src('assets/svg/*.svg')
+        .pipe(svgSprite({
+            baseSize: 16
+        }))
+        .pipe(gulp.dest("assets"));
+});
+```
+
 ###No previews
 If you don't want 'em. Works in all modes.
- 
+
 ```js
 gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
@@ -185,7 +198,7 @@ You can override all the [templates used](https://github.com/shakyShane/gulp-svg
 ##Advanced: Data Transforms
 If you want to do some custom stuff with your templates, you might need to transform the SVG data before it gets to your template. There
 are two functions you can provide to do this & they'll override the internal ones. Override `transformData` and you'll have direct access
-to the data returned from [svg-sprite-data](https://github.com/shakyShane/svg-sprite-data). This will skip the few transformation that 
+to the data returned from [svg-sprite-data](https://github.com/shakyShane/svg-sprite-data). This will skip the few transformation that
 this library applies - so use with caution. (if you want to modify the data aswell after our internal modifications, use `afterTransform` instead).
 
 ```js
