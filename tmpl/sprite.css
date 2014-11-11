@@ -15,7 +15,7 @@
     background-image: url("{pngPath}");
 }{/common}
 {#svg}
-.{name}:before {
+{#common}.{common}{/common}.{name}:before {
     background-position: {relPositionX}em {relPositionY}em;
     width: {relWidth}em;
     height: {relHeight}em;
