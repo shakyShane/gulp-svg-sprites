@@ -213,6 +213,28 @@
         {
             "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
             "line": 146,
+            "description": "Use async transforms",
+            "itemtype": "property",
+            "name": "asyncTransforms",
+            "type": "Boolean",
+            "default": "false",
+            "class": "",
+            "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
+        },
+        {
+            "file": "/Users/shakyshane/SITES/gulp-svg-sprites/index.js",
+            "line": 155,
+            "description": "Set the base font-size for the icon element",
+            "itemtype": "property",
+            "name": "baseSize",
+            "type": "Number",
+            "default": "10",
+            "class": "",
+            "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
+        },
+        {
+            "file": "/Users/shakyshane/SITES/gulp-svg-sprites/index.js",
+            "line": 164,
             "description": "Override the default data transforms",
             "itemtype": "property",
             "name": "transformData",
@@ -258,8 +280,8 @@
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
-            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 201,
+            "file": "/Users/shakyshane/SITES/gulp-svg-sprites/index.js",
+            "line": 222,
             "description": "Any last-minute data transformations before handing off to templates,\ncan be overridden by supplying a 'transformData' option",
             "params": [
                 {
@@ -279,8 +301,8 @@
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
-            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 242,
+            "file": "/Users/shakyshane/SITES/gulp-svg-sprites/index.js",
+            "line": 271,
             "description": "Helper for correct plugin errors",
             "params": [
                 {
@@ -296,8 +318,8 @@
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
-            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 251,
+            "file": "/Users/shakyshane/SITES/gulp-svg-sprites/index.js",
+            "line": 280,
             "params": [
                 {
                     "name": "stream",
@@ -324,8 +346,8 @@
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
-            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 313,
+            "file": "/Users/shakyshane/SITES/gulp-svg-sprites/index.js",
+            "line": 342,
             "params": [
                 {
                     "name": "template",
@@ -352,8 +374,8 @@
             "module": "gulp-svg-sprite.options\nDefault configuration. Everything here can be overridden"
         },
         {
-            "file": "/Users/shakyshane/Sites/gulp-svg-sprites/index.js",
-            "line": 342,
+            "file": "/Users/shakyshane/SITES/gulp-svg-sprites/index.js",
+            "line": 371,
             "return": {
                 "description": "",
                 "type": "Function"
@@ -365,55 +387,55 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:11"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:11"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:181"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:202"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:201"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:222"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:313"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:342"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:342"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:371"
         },
         {
             "message": "Missing item type\nMake Dust templates retain whitespace",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:11"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:11"
         },
         {
             "message": "Missing item type\nDefault templates, can be overridden by supplying the same keys in the\ntemplates: { } option",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:168"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:189"
         },
         {
             "message": "Missing item type\nUse user-provided templates first, defaults as fallback",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:181"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:202"
         },
         {
             "message": "Missing item type\nAny last-minute data transformations before handing off to templates,\ncan be overridden by supplying a 'transformData' option",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:201"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:222"
         },
         {
             "message": "Missing item type\nHelper for correct plugin errors",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:242"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:271"
         },
         {
             "message": "Missing item type",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:251"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:280"
         },
         {
             "message": "Missing item type",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:313"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:342"
         },
         {
             "message": "Missing item type",
-            "line": " /Users/shakyshane/Sites/gulp-svg-sprites/index.js:342"
+            "line": " /Users/shakyshane/SITES/gulp-svg-sprites/index.js:371"
         }
     ]
 }

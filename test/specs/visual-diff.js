@@ -1,9 +1,9 @@
 var compare = require("img-compare");
 var fs  = require("vinyl-fs");
 var svgSprites = require("../../index");
-var svg2png = require('gulp-svg2png');
-var filter = require('gulp-filter');
-var assert = require('chai').assert;
+var svg2png = require("gulp-svg2png");
+var filter = require("gulp-filter");
+var assert = require("chai").assert;
 
 var paths = {
     svgSrc: ["test/fixtures/basic/*.svg"],
@@ -24,7 +24,7 @@ describe("checking visual differences", function () {
             .pipe(svg2png())
             .pipe(fs.dest(paths.svgDest))
             .on("close", done);
-    })
+    });
     it("should work", function (done) {
         compare([
             "test/fixtures/output/svg/sprite.png",
@@ -42,6 +42,6 @@ describe("checking visual differences", function () {
                 assert.equal(out.status, "success");
                 done();
             }
-        })
+        });
     });
 });
