@@ -4,7 +4,7 @@ Gulp plugin for working with SVGs
 
 **Notice** See [README.old.md](https://github.com/shakyShane/gulp-svg-sprites/blob/master/README.old.md) for options/example pre `1.0.0`
 
-#Version 1.0.0
+#Version > 1.0.0 
 
 ## Install
 Install it locally to your project.
@@ -394,6 +394,24 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
 
 
 <tr>
+    <td><b>asyncTransforms</b></td>
+    <td>Boolean</td>
+    <td><code>false</code></td>
+    <td><p>Use async transforms</p>
+</td>
+</tr>
+
+
+<tr>
+    <td><b>baseSize</b></td>
+    <td>Number</td>
+    <td><code>10</code></td>
+    <td><p>Set the base font-size for the icon element</p>
+</td>
+</tr>
+
+
+<tr>
     <td><b>transformData</b></td>
     <td>Function</td>
     <td><code>transformData</code></td>
@@ -410,14 +428,6 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
 </td>
 </tr>
 
-<tr>
-    <td><b>asyncTransforms</b></td>
-    <td>Boolean</td>
-    <td><code>false</code></td>
-    <td><p>Allows your transforms to be performed asynchronously. This will give you a <code>done</code> callback
- which you pass your transformed data.</p>
-</td>
-</tr>
 
 </tbody>
 </table>
