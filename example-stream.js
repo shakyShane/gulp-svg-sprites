@@ -12,7 +12,7 @@ var config = {
     mode: "sprite"
 };
 
-fs.src("test/fixtures/svg/sketch/*.svg")
+fs.src("test/fixtures/basic/*.svg")
     .pipe(svgSprites(config))
     .pipe(fs.dest(paths.svgDest))
     .pipe(filter("**/*.svg"))

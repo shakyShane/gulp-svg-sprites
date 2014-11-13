@@ -40,17 +40,18 @@
     "gulpplugin"
   ],
   "devDependencies": {
-    "vinyl-fs": "^0.1.4",
-    "gulp": "^3.8.6",
-    "mocha": "~1.18.0",
-    "gulp-jshint": "~1.4.0",
     "chai": "~1.9.0",
-    "sinon": "~1.8.2",
-    "gulp-contribs": "0.0.2",
+    "gulp": "^3.8.6",
     "gulp-clean": "^0.3.1",
-    "gulp-svg2png": "^0.3.0",
+    "gulp-contribs": "0.0.2",
     "gulp-filter": "^0.5.0",
+    "gulp-jshint": "~1.4.0",
+    "gulp-svg2png": "^0.3.0",
     "gulp-yuidoc": "^0.1.2",
-    "marked": "^0.3.2"
+    "img-compare": "^1.2.0",
+    "marked": "^0.3.2",
+    "mocha": "~1.18.0",
+    "sinon": "~1.8.2",
+    "vinyl-fs": "^0.1.4"
   }
 }
