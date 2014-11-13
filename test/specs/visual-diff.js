@@ -14,7 +14,7 @@ var config = {
     mode: "sprite"
 };
 
-describe("checking visual differences", function () {
+describe.skip("checking visual differences", function () {
     this.timeout(10000);
     before(function (done) {
         fs.src("test/fixtures/basic/*.svg")
