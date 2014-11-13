@@ -1,5 +1,5 @@
 {#common}.{common} {
-    font-size: 10px;
+    font-size: {baseSize}px;
 }
 
 .{common}:before {
