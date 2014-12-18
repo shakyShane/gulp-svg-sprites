@@ -177,7 +177,7 @@
         {#svg}
         <li title="{name}">
             <div class="icon-box" id="icon-box-{name}">
-                <svg class="icon">
+                <svg class="{common} {name}">
                     <use xlink:href="#{name}" />
                 </svg>
             </div>
@@ -186,7 +186,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-{name}')">Invert Background</button>
             <div class="snippet-popover" id="snippet-{name}">
-                <pre><code>&lt;svg class=&quot;icon&quot;&gt;&lt;use xlink:href=&quot;#{name}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;{common} {name}&quot;&gt;&lt;use xlink:href=&quot;#{name}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
