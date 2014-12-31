@@ -1,8 +1,14 @@
-# gulp-svg-sprites [![Build Status](https://travis-ci.org/shakyShane/gulp-svg-sprites.svg?branch=master)](https://travis-ci.org/shakyShane/gulp-svg-sprites)
+### gulp-svg-sprites
 
-Gulp plugin for working with SVGs
+#NOTICE - NOT ACTIVELY MAINTAINED
 
-**Notice** See [README.old.md](https://github.com/shakyShane/gulp-svg-sprites/blob/master/README.old.md) for options/example pre `1.0.0`
+This plugin was only ever a stop-gap until @jkphl got around to creating a stream-friendly version of
+the [svg-sprite](https://github.com/jkphl/svg-sprite) module.
+
+He's done that now & there's also his own gulp plugin to go along with it,
+so I recommend that you use that instead - [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite)
+
+-----------------
 
 #Version > 1.0.0 
 
