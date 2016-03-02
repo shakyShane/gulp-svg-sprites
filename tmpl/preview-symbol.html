@@ -8,7 +8,7 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
     <meta http-equiv="pragma" content="no-cache"/>
     <title>Icon kit preview | gulp-svg-sprites</title>
-    <link href="{config.cssFile}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<%= config.cssFile %>" rel="stylesheet" type="text/css" media="all"/>
     <style type="text/css">@CHARSET "UTF-8";
     * {
         box-sizing: border-box;
@@ -174,23 +174,24 @@
 </header>
 <section>
     <ul class="icon-boxes">
-        {#svg}
-        <li title="{name}">
-            <div class="icon-box" id="icon-box-{name}">
-                <svg class="{common} {name}">
-                    <use xlink:href="#{name}" />
+        <% _.forEach(svg, function(svgItem) {  %>
+
+        <li title="<%= svgItem.name %>">
+            <div class="icon-box" id="icon-box-<%= svgItem.name %>">
+                <svg class="<%= common %> <%= svgItem.name %>">
+                    <use xlink:href="#<%= svgItem.name %>" />
                 </svg>
             </div>
-            <h2>{name}</h2>
-            <button onclick="showPopover('snippet-{name}')">Show Snippet</button>
+            <h2><%= svgItem.name %></h2>
+            <button onclick="showPopover('snippet-<%= svgItem.name %>')">Show Snippet</button>
             <br/>
-            <button onclick="invertBackground('icon-box-{name}')">Invert Background</button>
-            <div class="snippet-popover" id="snippet-{name}">
-                <pre><code>&lt;svg class=&quot;{common} {name}&quot;&gt;&lt;use xlink:href=&quot;#{name}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+            <button onclick="invertBackground('icon-box-<%= svgItem.name %>')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-<%= svgItem.name %>">
+                <pre><code>&lt;svg class=&quot;<%= common %> <%= svgItem.name %>&quot;&gt;&lt;use xlink:href=&quot;#<%= svgItem.name %>&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
-        {/svg}
+        <% });  %>
     </ul>
 </section>
 <footer>
