@@ -24,16 +24,16 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "dust": "^0.3.0",
-    "dustjs-linkedin": "^2.4.0",
-    "gulp-util": "^3.0.0",
-    "libxmljs": "^0.14.1",
-    "lodash": "^2.4.1",
-    "q": "^1.0.1",
-    "svg-sprite-data": "^2.0.0",
-    "svgo": "^0.5.0",
-    "through2": "^0.4.1",
-    "vinyl": "^0.2.3"
+    "dust": "0.3.0",
+    "dustjs-linkedin": "2.7.2",
+    "gulp-util": "3.0.7",
+    "libxmljs": "0.17.1",
+    "lodash": "4.6.0",
+    "q": "1.4.1",
+    "svg-sprite-data": "2.0.0",
+    "svgo": "0.6.1",
+    "through2": "2.0.1",
+    "vinyl": "1.1.1"
   },
   "keywords": [
     "svg",
@@ -41,18 +41,18 @@
     "gulpplugin"
   ],
   "devDependencies": {
-    "chai": "~1.9.0",
-    "gulp": "^3.8.6",
-    "gulp-clean": "^0.3.1",
-    "gulp-contribs": "0.0.2",
-    "gulp-filter": "^0.5.0",
-    "gulp-jshint": "~1.4.0",
-    "gulp-svg2png": "^0.3.0",
-    "gulp-yuidoc": "^0.1.2",
-    "img-compare": "^1.2.0",
-    "marked": "^0.3.2",
-    "mocha": "~1.18.0",
-    "sinon": "~1.8.2",
-    "vinyl-fs": "^0.1.4"
+    "chai": "3.5.0",
+    "gulp": "3.9.1",
+    "gulp-clean": "0.3.1",
+    "gulp-contribs": "0.0.3",
+    "gulp-filter": "4.0.0",
+    "gulp-jshint": "2.0.0",
+    "gulp-svg2png": "1.0.0",
+    "gulp-yuidoc": "0.1.2",
+    "img-compare": "1.2.0",
+    "marked": "0.3.5",
+    "mocha": "2.4.5",
+    "sinon": "1.17.3",
+    "vinyl-fs": "2.3.4"
   }
 }
