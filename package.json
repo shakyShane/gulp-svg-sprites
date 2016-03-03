@@ -24,11 +24,8 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "dust": "0.3.0",
-    "dustjs-linkedin": "2.7.2",
     "gulp-util": "3.0.7",
-    "libxmljs": "0.17.1",
-    "lodash": "4.6.0",
+    "lodash": "4.6.1",
     "q": "1.4.1",
     "svg-sprite-data": "2.0.0",
     "svgo": "0.6.1",
@@ -50,9 +47,10 @@
     "gulp-svg2png": "1.0.0",
     "gulp-yuidoc": "0.1.2",
     "img-compare": "1.2.0",
+    "jshint": "^2.9.1",
     "marked": "0.3.5",
     "mocha": "2.4.5",
     "sinon": "1.17.3",
-    "vinyl-fs": "2.3.4"
+    "vinyl-fs": "2.4.1"
   }
 }

@@ -342,7 +342,7 @@ function makeFile(template, fileName, stream, data) {
 
     var deferred = Q.defer();
     var id = _.uniqueId();
-    var out = '';
+    var out = "";
 
     try{
       var compiled = _.template(template);
@@ -399,12 +399,14 @@ module.exports = function (config) {
         var stream = this;
 
         spriter.compile(config, function (err, svg) {
-            var onDoneTransformData = function (data) {
-                config.afterTransform(data, config, onDoneAfterTransformData);
-            };
             var onDoneAfterTransformData = function (data) {
                 writeFiles(stream, config, svg.svg, data, cb.bind(null, null));
             };
+
+            var onDoneTransformData = function (data) {
+                config.afterTransform(data, config, onDoneAfterTransformData);
+            };
+
 
             if (config.asyncTransforms) {
                 config.transformData(svg.data, config, onDoneTransformData);
