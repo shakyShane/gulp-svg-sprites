@@ -1,14 +1,5 @@
 ### gulp-svg-sprites
 
-#NOTICE - NOT ACTIVELY MAINTAINED
-
-This plugin was only ever a stop-gap until @jkphl got around to creating a stream-friendly version of
-the [svg-sprite](https://github.com/jkphl/svg-sprite) module.
-
-He's done that now & there's also his own gulp plugin to go along with it,
-so I recommend that you use that instead - [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite)
-
------------------
 
 #Version > 1.0.0 
 
