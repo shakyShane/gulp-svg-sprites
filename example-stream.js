@@ -12,9 +12,14 @@ var config = {
     mode: "sprite"
 };
 
+console.info('creating svg sprite from ' + paths.svgSrc);
+
+
 fs.src("test/fixtures/basic/*.svg")
     .pipe(svgSprites(config))
     .pipe(fs.dest(paths.svgDest))
     .pipe(filter("**/*.svg"))
     .pipe(svg2png())
     .pipe(fs.dest(paths.svgDest));
+
+console.info('files are saved to ' + paths.svgDest);
