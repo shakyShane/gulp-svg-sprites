@@ -1,7 +1,7 @@
 {
   "name": "gulp-svg-sprites",
   "description": "Create SVG sprites with PNG fallbacks",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "homepage": "",
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
     }
   ],
   "scripts": {
-    "test": "gulp lint && mocha --recursive test/specs"
+    "test": "gulp lint && mocha --recursive test/specs",
+    "example": "node example-stream.js"
   },
   "main": "index.js",
   "engines": {
@@ -25,12 +26,12 @@
   },
   "dependencies": {
     "gulp-util": "3.0.7",
-    "lodash": "4.6.1",
+    "lodash": "4.14.1",
     "q": "1.4.1",
     "svg-sprite-data": "github:soenkekluth/svg-sprite-data",
-    "svgo": "0.6.1",
+    "svgo": "0.6.6",
     "through2": "2.0.1",
-    "vinyl": "1.1.1"
+    "vinyl": "1.2.0"
   },
   "keywords": [
     "svg",
@@ -40,17 +41,17 @@
   "devDependencies": {
     "chai": "3.5.0",
     "gulp": "3.9.1",
-    "gulp-clean": "0.3.1",
+    "gulp-clean": "0.3.2",
     "gulp-contribs": "0.0.3",
     "gulp-filter": "4.0.0",
-    "gulp-jshint": "2.0.0",
-    "gulp-svg2png": "1.0.0",
+    "gulp-jshint": "2.0.1",
+    "gulp-svg2png": "2.0.0",
     "gulp-yuidoc": "0.1.2",
     "img-compare": "1.2.0",
     "jshint": "^2.9.1",
-    "marked": "0.3.5",
-    "mocha": "2.4.5",
-    "sinon": "1.17.3",
-    "vinyl-fs": "2.4.1"
+    "marked": "0.3.6",
+    "mocha": "3.0.1",
+    "sinon": "1.17.5",
+    "vinyl-fs": "2.4.3"
   }
 }
