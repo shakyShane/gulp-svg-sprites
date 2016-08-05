@@ -28,7 +28,7 @@
     "gulp-util": "3.0.7",
     "lodash": "4.14.1",
     "q": "1.4.1",
-    "svg-sprite-data": "github:soenkekluth/svg-sprite-data",
+    "svg-sprite-data": "3.0.0",
     "svgo": "0.6.6",
     "through2": "2.0.1",
     "vinyl": "1.2.0"
