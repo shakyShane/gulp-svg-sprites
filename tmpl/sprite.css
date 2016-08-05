@@ -11,12 +11,12 @@
     background-size: <%= relWidth %>em <%= relHeight %>em;
 }
 
+.no-svg .<%=common %>:before {
+    background-image: url("<%=pngPath%>");
+}
 
 <% _.forEach(svg, function(svgItem) { %>
 
-  .no-svg .<%=common %>:before {
-      background-image: url("<%=pngPath%>");
-  }
   .<%=common %>.<%=svgItem.name%>:before {
       background-position: <%= svgItem.relPositionX %>em <%= svgItem.relPositionY %>em;
       width: <%= svgItem.relWidth %>em;
