@@ -2,19 +2,11 @@ var SpriteData = require("svg-sprite-data");
 var through2   = require("through2");
 var gutil      = require("gulp-util");
 var File       = gutil.File;
-var dust       = require("dustjs-linkedin");
 var fs         = require("fs");
 var Q          = require("q");
 var _          = require("lodash");
 var path       = require("path");
 
-/**
- * Make Dust templates retain whitespace
- * @param ctx
- * @param node
- * @returns {*}
- */
-dust.optimizers.format = function(ctx, node) { return node; };
 
 var PLUGIN_NAME = "gulp-svg-sprites";
 
@@ -350,20 +342,25 @@ function makeFile(template, fileName, stream, data) {
 
     var deferred = Q.defer();
     var id = _.uniqueId();
+    var out = "";
 
-    dust.compileFn(template, id, false);
+    try{
+      var compiled = _.template(template);
+      out = compiled(data);
+    }catch(e){
+      deferred.reject(e);
+      return deferred.promise;
+    }
 
-    dust.render(id, data, function (err, out) {
 
-        stream.push(new File({
-            cwd:  "./",
-            base: "./",
-            path: fileName,
-            contents: new Buffer(out)
-        }));
+    stream.push(new File({
+        cwd:  "./",
+        base: "./",
+        path: fileName,
+        contents: new Buffer(out)
+    }));
 
-        deferred.resolve(out);
-    });
+    deferred.resolve(out);
 
     return deferred.promise;
 }
@@ -402,12 +399,14 @@ module.exports = function (config) {
         var stream = this;
 
         spriter.compile(config, function (err, svg) {
-            var onDoneTransformData = function (data) {
-                config.afterTransform(data, config, onDoneAfterTransformData);
-            };
             var onDoneAfterTransformData = function (data) {
                 writeFiles(stream, config, svg.svg, data, cb.bind(null, null));
             };
+
+            var onDoneTransformData = function (data) {
+                config.afterTransform(data, config, onDoneAfterTransformData);
+            };
+
 
             if (config.asyncTransforms) {
                 config.transformData(svg.data, config, onDoneTransformData);

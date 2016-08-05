@@ -8,7 +8,7 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
     <meta http-equiv="pragma" content="no-cache"/>
     <title>Icon kit preview | gulp-svg-sprites</title>
-    <link href="{config.cssFile}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<%= config.cssFile %>" rel="stylesheet" type="text/css" media="all"/>
     <style type="text/css">@CHARSET "UTF-8";
     * {
         box-sizing: border-box;
@@ -157,13 +157,13 @@
     <h1 id="logo">Gulp SVG Sprites</h1>
     <h4>Files Generated:</h4>
     <ol>
-        <li><a href="{config.cssFile}">{config.cssFile}</a></li>
-        <li><a href="{config.svg.sprite}">{config.svg.sprite}</a></li>
+        <li><a href="<%= config.cssFile %>"><%= config.cssFile %></a></li>
+        <li><a href="<%= config.svg.sprite %>"><%= config.svg.sprite %></a></li>
     </ol>
     <h4>Usage:</h4>
     <ol>
         <li>
-            Include the <a href="{config.cssFile}">CSS file</a> into your project.
+            Include the <a href="<%= config.cssFile %>">CSS file</a> into your project.
         </li>
         <li>
             Paste one of the snippets anywhere into your website.
@@ -173,23 +173,28 @@
 <section>
     <nav><button onclick="toggleMode()">Toggle PNG/SVG</button> (showing <span id="mode-view">SVG</span>)<br><br><input type="range" onchange="setSize(this.value)" min="2" max="14"></nav>
     <ul class="icon-boxes">
-        {#svg}
-        {#normal}
-        <li title="{name}">
-            <div class="icon-box" id="icon-box-{name}">
-                <div class="{common} {name}"></div>
+
+
+
+      <% _.forEach(svg, function(svgItem) {  %>
+
+        <li title="<%= svgItem.name %>">
+            <div class="icon-box" id="icon-box-<%= svgItem.name %>">
+                <div class="<%= common %> <%= svgItem.name %>"></div>
             </div>
-            <h2>{name}</h2>
-            <button onclick="showPopover('snippet-{name}')">Show Snippet</button>
+            <h2><%= svgItem.name %></h2>
+            <button onclick="showPopover('snippet-<%= svgItem.name %>')">Show Snippet</button>
             <br/>
-            <button onclick="invertBackground('icon-box-{name}')">Invert Background</button>
-            <div class="snippet-popover" id="snippet-{name}">
-                <pre><code>&lt;span class=&quot;{common} {name}&quot;&gt;&lt;/span&gt;</code></pre>
+            <button onclick="invertBackground('icon-box-<%= svgItem.name %>')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-<%= svgItem.name %>">
+                <pre><code>&lt;span class=&quot;<%= common %> <%= svgItem.name %>&quot;&gt;&lt;/span&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
-        {/normal}
-        {/svg}
+
+
+      <% });  %>
+
     </ul>
 </section>
 <footer>

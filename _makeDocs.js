@@ -2,8 +2,8 @@ var fs           = require("fs");
 var cp           = require("child_process");
 var doc          = "./doc/yuidoc.json";
 var marked       = require("marked");
-var dust         = require("dustjs-linkedin");
-dust.optimizers.format = function(ctx, node) { return node; };
+// var dust         = require("dustjs-linkedin");
+// dust.optimizers.format = function(ctx, node) { return node; };
 
 var mdTemp            = fs.readFileSync("./tmpl/readme.txt", "utf-8");
 var readme            = fs.readFileSync("./README.md", "utf-8");

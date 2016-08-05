@@ -1,23 +1,29 @@
-{#common}.{common} {
-    font-size: {baseSize}px;
+.<%=common %> {
+    font-size: <%= baseSize %>px;
 }
 
-.{common}:before {
+.<%=common %>:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("{svgPath}");
+    background-image: url("<%=svgPath%>");
     background-repeat: no-repeat;
-    background-size: {relWidth}em {relHeight}em;
+    background-size: <%= relWidth %>em <%= relHeight %>em;
 }
 
-.no-svg .{common}:before {
-    background-image: url("{pngPath}");
-}{/common}
-{#svg}
-{#common}.{common}{/common}.{name}:before {
-    background-position: {relPositionX}em {relPositionY}em;
-    width: {relWidth}em;
-    height: {relHeight}em;
+.no-svg .<%=common %>:before {
+    background-image: url("<%=pngPath%>");
 }
-{/svg}
+
+<% _.forEach(svg, function(svgItem) { %>
+
+  .<%=common %>.<%=svgItem.name%>:before {
+      background-position: <%= svgItem.relPositionX %>em <%= svgItem.relPositionY %>em;
+      width: <%= svgItem.relWidth %>em;
+      height: <%= svgItem.relHeight %>em;
+  }
+
+
+<% }); %>
+
+
