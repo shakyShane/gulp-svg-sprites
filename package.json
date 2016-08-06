@@ -20,6 +20,7 @@
     "test": "gulp lint && mocha --recursive test/specs",
     "example": "node example-stream.js",
     "gulp-basic": "gulp sprite:basic",
+    "gulp-basic-scss": "gulp sprite:basic-scss",
     "gulp-options": "gulp sprite:options",
     "gulp-scss": "gulp sprite:scss"
   },

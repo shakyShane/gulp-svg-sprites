@@ -10,6 +10,7 @@ gulp.task('clean:output', function() {
 });
 
 require('./examples/gulpfile.basic');
+require('./examples/gulpfile.basic-scss');
 require('./examples/gulpfile.options');
 require('./examples/gulpfile.scss');
 
