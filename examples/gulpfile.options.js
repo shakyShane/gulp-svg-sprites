@@ -28,8 +28,8 @@ var config = {
 };
 
 
-gulp.task("sprite", function () {
-    gulp.src("test/fixtures/svg/basic/*.svg")
+gulp.task("sprite:options", ["clean:output"], function () {
+    gulp.src("test/fixtures/basic/*.svg")
         .pipe(svgSprite(config))
-        .pipe(gulp.dest("../test/fixtures/output"))
+        .pipe(gulp.dest("./test/fixtures/output"))
 });
