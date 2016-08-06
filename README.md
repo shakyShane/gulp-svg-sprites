@@ -1,5 +1,5 @@
-### gulp-svg-sprites
-
+gulp-svg-sprites
+================
 
 ## Install
 Install it locally to your project.
