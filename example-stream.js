@@ -1,19 +1,18 @@
 var fs  = require("vinyl-fs");
 var svgSprites = require("./index");
-var svg2png = require('gulp-svg2png');
-var filter = require('gulp-filter');
+var svg2png = require("gulp-svg2png");
+var filter = require("gulp-filter");
 
 var paths = {
     svgSrc: ["test/fixtures/basic/*.svg"],
     svgDest: "./test/fixtures/output"
-};
+  };
 
 var config = {
     mode: "sprite"
-};
+  };
 
-console.info('creating svg sprite from ' + paths.svgSrc);
-
+console.info("creating svg sprite from " + paths.svgSrc);
 
 fs.src("test/fixtures/basic/*.svg")
     .pipe(svgSprites(config))
@@ -22,4 +21,4 @@ fs.src("test/fixtures/basic/*.svg")
     .pipe(svg2png())
     .pipe(fs.dest(paths.svgDest));
 
-console.info('files are saved to ' + paths.svgDest);
+console.info("files are saved to " + paths.svgDest);
