@@ -17,13 +17,16 @@
 
 <% _.forEach(svg, function(svgItem) { %>
 
-.<%=svgItem.name%> {
-  @extend .<%=common %>;
+.<%=common %>.<%=svgItem.name%> {
   &:before {
       background-position: <%= svgItem.relPositionX %>em <%= svgItem.relPositionY %>em;
       width: <%= svgItem.relWidth %>em;
       height: <%= svgItem.relHeight %>em;
     }
+  }
+
+  @mixin <%=common %>-<%=svgItem.name%>(){
+    @extend .<%=svgItem.name%>;
   }
 <% }); %>
 
