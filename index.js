@@ -74,6 +74,7 @@ var defaults = {
      * @default css/sprite.css
      */
     cssFile:   "css/sprite.css",
+
     /**
      *
      * Define the path to the SVG file that be written to the CSS file. Note: this does NOT alter
@@ -184,6 +185,7 @@ var defaults = {
  */
 var templatePaths = {
     css:            "/tmpl/sprite.css",
+    scss:           "/tmpl/sprite.scss",
     defs:           "/tmpl/defs.svg",
     symbols:        "/tmpl/symbols.svg",
     previewSprite:  "/tmpl/preview.html",
@@ -201,7 +203,7 @@ function getTemplates(config) {
     var templates = {};
 
     Object.keys(templatePaths).forEach(function (key) {
-        if (config.templates && config.templates[key]) {
+        if (config.templates && (config.templates[key] && config.templates[key] !== true)) {
             templates[key] = config.templates[key];
         } else {
             templates[key] = fs.readFileSync(__dirname + templatePaths[key], "utf-8");
@@ -298,11 +300,21 @@ function writeFiles(stream, config, svg, data, cb) {
             contents: new Buffer(svg)
         }));
 
-        if (config.cssFile) {
-            promises.push(makeFile(temps.css, config.cssFile, stream, data));
+        var cssFile = config.cssFile;
+
+        if (config) {
+            if(config.templates && config.templates.scss){
+              cssFile = path.extname(cssFile) === '.css' ? cssFile.replace('.css', '.scss') : cssFile;
+            }
+            var tpl = config.templates && config.templates.scss ? temps.scss : temps.css;
+            promises.push(makeFile( tpl, cssFile, stream, data));
         }
 
         if (config.preview && config.preview.sprite) {
+            if(config.templates && config.templates.scss){
+              cssFile = path.extname(cssFile) === '.scss' ? cssFile.replace('.scss', '.css') : cssFile;
+              promises.push(makeFile( temps.css, cssFile, stream, data));
+            }
             promises.push(makeFile(temps.previewSprite, config.preview.sprite, stream, data));
         }
 
