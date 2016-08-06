@@ -168,7 +168,7 @@ gulp.task('sprites', function () {
 });
 ```
 
-###use the buildin SCSS template
+###Use the built in SCSS template
 
 ```js
 gulp.task('sprites', function () {
