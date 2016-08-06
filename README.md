@@ -168,6 +168,18 @@ gulp.task('sprites', function () {
 });
 ```
 
+###use the buildin SCSS template
+
+```js
+gulp.task('sprites', function () {
+    return gulp.src('assets/svg/*.svg')
+        .pipe(svgSprite({
+            templates: { scss: true }
+        }))
+        .pipe(gulp.dest("assets"));
+});
+```
+
 ##Advanced: Custom Templates
 Templates use Lodash Templates - checkout [their docs](https://lodash.com/docs#template) for usage instructions. Or take a look at the [default css](https://github.com/shakyShane/gulp-svg-sprites/blob/master/tmpl/sprite.css)
 or the [default scss](https://github.com/shakyShane/gulp-svg-sprites/blob/master/tmpl/sprite.scss) for tips.
