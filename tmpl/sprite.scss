@@ -1,0 +1,30 @@
+.<%=common %> {
+    font-size: <%= baseSize %>px;
+    &:before {
+      content:' ';
+      vertical-align:middle;
+      display: inline-block;
+      background-image: url("<%=svgPath%>");
+      background-repeat: no-repeat;
+      background-size: <%= relWidth %>em <%= relHeight %>em;
+
+      .no-svg & {
+        background-image: url("<%=pngPath%>");
+      }
+    }
+}
+
+
+<% _.forEach(svg, function(svgItem) { %>
+
+.<%=svgItem.name%> {
+  @extend .<%=common %>;
+  &:before {
+      background-position: <%= svgItem.relPositionX %>em <%= svgItem.relPositionY %>em;
+      width: <%= svgItem.relWidth %>em;
+      height: <%= svgItem.relHeight %>em;
+    }
+  }
+<% }); %>
+
+
