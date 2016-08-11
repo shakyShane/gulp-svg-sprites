@@ -12,6 +12,8 @@ require("./examples/gulpfile.basic");
 require("./examples/gulpfile.basic-scss");
 require("./examples/gulpfile.options");
 require("./examples/gulpfile.scss");
+require("./examples/gulpfile.defs");
+require("./examples/gulpfile.symbols");
 
 gulp.task("lint", function() {
   gulp.src(["test/specs/**/*.js", "!test/fixtures/**", "index.js"])
