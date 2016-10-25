@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
-  <% _.forEach(svg, function(svgItem) { %>
-  <symbol id="<%= svgItem.name %>" viewBox="<%= svgItem.viewBox %>">
-    <% _.forEach(svgItem.raw, function(raw) { %>
-      <%= raw %>
-    <% }); %>
-  </symbol>
-  <% }); %>
+	<% _.forEach(svg, function(svgItem) { %>
+		<symbol id="<%= svgItem.name %>" viewBox="<%= svgItem.viewBox %>">
+			<%= svgItem.data.replace(/<svg.*?>(.*?)<\/svg>/, "$1") %>
+		</symbol>
+	<% }); %>
 </svg>
