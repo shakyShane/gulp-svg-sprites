@@ -1,7 +1,23 @@
-[![Build Status](https://travis-ci.org/shakyShane/gulp-svg-sprites.svg?branch=master)](https://travis-ci.org/shakyShane/gulp-svg-sprites)
-
-gulp-svg-sprites
+gulp-svg-sprites [![Build Status](https://travis-ci.org/shakyShane/gulp-svg-sprites.svg?branch=master)](https://travis-ci.org/shakyShane/gulp-svg-sprites)
 ================
+
+## Table of contents
+
+* [Install](#install)
+* [Usage](#usage)
+* [PNG fallback](#png-fallback)
+* [Symbols mode](#symbols-mode)
+* [Defs mode](#defs-mode)
+   * [Custom selectors](#custom-selectors)
+   * [Custom IDs](#custom-ids)
+   * [Custom filenames](#custom-filenames)
+   * [Base size](#base-size)
+   * [No previews](#no-previews)
+   * [Using the built-in SCSS template](#using-the-built-in-scss-template)
+* [Advanced: custom templates](#advanced-custom-templates)
+* [Advanced: data transforms](#advanced-data-transforms)
+* [Options](#options)
+* [License](#license)
 
 ## Install
 Install it locally to your project.
@@ -10,14 +26,14 @@ Install it locally to your project.
 $ npm install --save-dev gulp-svg-sprites
 ```
 
-**Windows note:** Using Version < 4.0.0 Make sure, you also have all [prerequisities for node-gyp](https://github.com/TooTallNate/node-gyp#installation).
+**Windows note:** Using Version < 4.0.0, make sure you also have all [prerequisites for node-gyp](https://github.com/TooTallNate/node-gyp#installation).
 
-##Usage
+## Usage
 With no configuration, `gulp-svg-sprites` will create the following files:
 
-1. `svg/sprite.svg` - Sprite Sheet containing all of your SVGs.
-2. `sprite.html`    - A preview page with instructions & snippets.
-2. `css/sprite.css` - A CSS file with the code needed to use the sprite.
+1. `svg/sprite.svg` - Sprite Sheet containing all of your SVGs
+1. `sprite.html`    - A preview page with instructions & snippets
+1. `css/sprite.css` - A CSS file with the code needed to use the sprite
 
 ```js
 var svgSprite = require("gulp-svg-sprites");
@@ -35,7 +51,7 @@ Then, if you had a `facebook.svg` file, you'd be able to use the following marku
 <i class="icon facebook"></i>
 ```
 
-##PNG fallback
+## PNG fallback
 You can easily support old browsers by piping the new SVG sprite through to another gulp task. There will be a
 `no-svg` class generated automatically in the CSS, so you'll just need to use something like Modernizr
 to set the `no-svg` class on the `<body>` tag of your website.
@@ -55,9 +71,9 @@ gulp.task('sprites', function () {
 });
 ```
 
-##Symbols mode
-Pass `mode: "symbols"` to output SVG data as this [CSS TRICKS article](http://css-tricks.com/svg-symbol-good-choice-icons/) outlines.
-You'll get an SVG file & a preview file showing how to use it.
+## Symbols mode
+Pass `mode: "symbols"` to output SVG data as this [CSS Tricks article](http://css-tricks.com/svg-symbol-good-choice-icons/) outlines.
+You'll get an SVG file and a preview file showing how to use it.
 
 ```js
 gulp.task('sprites', function () {
@@ -67,9 +83,9 @@ gulp.task('sprites', function () {
 });
 ```
 
-##Defs mode
-Pass `mode: "defs"` to output SVG data as this [CSS TRICKS article](http://css-tricks.com/svg-sprites-use-better-icon-fonts/) outlines.
-You'll get an SVG file & a preview file showing how to use it.
+## Defs mode
+Pass `mode: "defs"` to output SVG data as this [CSS Tricks article](http://css-tricks.com/svg-sprites-use-better-icon-fonts/) outlines.
+You'll get an SVG file and a preview file showing how to use it.
 
 ```js
 gulp.task('sprites', function () {
@@ -79,8 +95,8 @@ gulp.task('sprites', function () {
 });
 ```
 
-###Custom Selectors
-By default, the filename will be used as the selector in the CSS, but this is how you'd override it (the `%f` will be replaced with the filename)
+### Custom selectors
+By default, the filename will be used as the selector in the CSS, but this is how you'd override it (the `%f` will be replaced with the filename):
 
 ```js
 gulp.task('sprites', function () {
@@ -92,7 +108,7 @@ gulp.task('sprites', function () {
 });
 ```
 
-###Custom IDs
+### Custom IDs
 With the `symbols` or `defs` mode, it's probably the ID you'll want to override. No problem.
 
 ```js
@@ -105,8 +121,8 @@ gulp.task('sprites', function () {
 });
 ```
 
-###Custom filenames
-Change the generated filenames with ease. For example, if you want to create a `scss` partial instead, you could just do:
+### Custom filenames
+You can also change the generated filenames with ease. For example, if you want to create a `scss` partial instead, you could just do:
 
 ```js
 // Custom CSS filename
@@ -129,7 +145,7 @@ gulp.task('sprites', function () {
         .pipe(gulp.dest("assets"));
 });
 
-// Custom Preview filename + Custom SVG filename
+// Custom preview filename + custom SVG filename
 gulp.task('sprites', function () {
     return gulp.src('assets/svg/*.svg')
         .pipe(svgSprite({
@@ -144,7 +160,7 @@ gulp.task('sprites', function () {
 });
 ```
 
-###Base Size
+### Base size
 Set the font-size of the .icon class. Just pass a plain number, no units.
 
 ```js
@@ -157,7 +173,7 @@ gulp.task('sprites', function () {
 });
 ```
 
-###No previews
+### No previews
 If you don't want 'em. Works in all modes.
 
 ```js
@@ -170,7 +186,7 @@ gulp.task('sprites', function () {
 });
 ```
 
-###Use the built in SCSS template
+### Using the built-in SCSS template
 
 ```js
 gulp.task('sprites', function () {
@@ -182,11 +198,11 @@ gulp.task('sprites', function () {
 });
 ```
 
-##Advanced: Custom Templates
-Templates use Lodash Templates - checkout [their docs](https://lodash.com/docs#template) for usage instructions. Or take a look at the [default css](https://github.com/shakyShane/gulp-svg-sprites/blob/master/tmpl/sprite.css)
-or the [default scss](https://github.com/shakyShane/gulp-svg-sprites/blob/master/tmpl/sprite.scss) for tips.
+## Advanced: custom templates
+Templates use Lodash Templates - check out [their docs](https://lodash.com/docs#template) for usage instructions. Or take a look at the [default CSS](https://github.com/shakyShane/gulp-svg-sprites/blob/master/tmpl/sprite.css)
+or the [default SCSS](https://github.com/shakyShane/gulp-svg-sprites/blob/master/tmpl/sprite.scss) for tips.
 
-You can get your hands on JUST the SVG Data & provide your own templates. For example, if you want to provide
+You can get your hands on JUST the SVG Data and provide your own templates. For example, if you want to provide
 your own template for the CSS output, you could do this:
 
 ```js
@@ -205,11 +221,11 @@ gulp.task('sprites', function () {
 
 You can override all the [templates used](https://github.com/shakyShane/gulp-svg-sprites/blob/master/index.js#L57-L64) in the same way.
 
-##Advanced: Data Transforms
+## Advanced: data transforms
 If you want to do some custom stuff with your templates, you might need to transform the SVG data before it gets to your template. There
-are two functions you can provide to do this & they'll override the internal ones. Override `transformData` and you'll have direct access
-to the data returned from [svg-sprite-data](https://github.com/shakyShane/svg-sprite-data). This will skip the few transformation that
-this library applies - so use with caution. (if you want to modify the data aswell after our internal modifications, use `afterTransform` instead).
+are two functions you can provide to do this and they'll override the internal ones. Override `transformData` and you'll have direct access
+to the data returned from [svg-sprite-data](https://github.com/shakyShane/svg-sprite-data). This will skip the few transformations that
+this library applies - so use with caution. (If you want to modify the data as well after our internal modifications, use `afterTransform` instead.)
 
 ```js
 
@@ -242,7 +258,7 @@ gulp.task('sprites', function () {
 
 ```
 
-You can override all the [templates used here](https://github.com/shakyShane/gulp-svg-sprites/blob/master/index.js#L172-L179) in the same way. If you are doing any async work in these callbacks set `asyncTransforms` to `true` in the config. 
+You can override all the [templates used here](https://github.com/shakyShane/gulp-svg-sprites/blob/master/index.js#L172-L179) in the same way. If you are doing any async work in these callbacks set `asyncTransforms` to `true` in the config.
 
 ## Options
 <table>
@@ -270,7 +286,7 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td>String</td>
     <td><code>icon</code></td>
     <td><p>By default, the class <code>icon</code> will be used as the common class.
- but you can also choose your own</p>
+ You can also choose your own.</p>
 </td>
 </tr>
 
@@ -280,7 +296,7 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td>String</td>
     <td><code>%f</code></td>
     <td><p>Easily add prefixes/suffixes to the generated CSS classnames. The <code>%f</code> will
- be replaced by the filename</p>
+ be replaced by the filename.</p>
 </td>
 </tr>
 
@@ -290,7 +306,7 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td>String</td>
     <td><code>vertical</code></td>
     <td><p>Define the layout of the items in the sprite. Can be either
- &quot;vertical&quot;, &quot;horizontal&quot; or &quot;diagonal&quot;</p>
+ &quot;vertical&quot;, &quot;horizontal&quot; or &quot;diagonal&quot;.</p>
 </td>
 </tr>
 
@@ -299,7 +315,7 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td><b>svgId</b></td>
     <td>String</td>
     <td><code>%f</code></td>
-    <td><p>In <code>symbols</code> or <code>defs</code> mode, you&#39;ll probably want to override the ID on each element.
+    <td><p>In <code>symbols</code> or <code>defs</code> mode, you'll probably want to override the ID on each element.
  The filename will be used as a default, but can be overridden.</p>
 </td>
 </tr>
@@ -310,7 +326,7 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td>String</td>
     <td><code>css/sprite.css</code></td>
     <td><p>Define the path &amp; filename of the CSS file. Using this, you could easily create a SASS
- partial for example</p>
+ partial for example.</p>
 </td>
 </tr>
 
@@ -329,7 +345,7 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td><b>pngPath</b></td>
     <td>String</td>
     <td><code>../%f</code></td>
-    <td><p>If you&#39;re creating a PNG fallback, define the path to it that be written to the CSS file.</p>
+    <td><p>If you're creating a PNG fallback, define the path to it that be written to the CSS file</p>
 </td>
 </tr>
 
@@ -338,7 +354,7 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td><b>preview</b></td>
     <td>Object</td>
     <td></td>
-    <td><p>Paths to preview files.</p>
+    <td><p>Paths to preview files</p>
 </td>
 </tr>
 
@@ -368,7 +384,7 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td><b>svg</b></td>
     <td>Object</td>
     <td></td>
-    <td><p>Paths to SVG files.</p>
+    <td><p>Paths to SVG files</p>
 </td>
 </tr>
 
@@ -437,10 +453,10 @@ You can override all the [templates used here](https://github.com/shakyShane/gul
     <td><p>Apply additional data transforms AFTER the defaults</p>
 </td>
 </tr>
-
-
 </tbody>
 </table>
+
 ## License
-Copyright (c) 2014 Shane Osbourne
+Copyright (c) 2017 Shane Osbourne
+
 Licensed under the MIT license.
