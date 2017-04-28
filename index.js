@@ -326,6 +326,31 @@ function writeFiles(stream, config, svg, data, cb) {
   if (config.mode === "symbols") {
     template = "symbols";
     preview  = "previewSymbols";
+    
+        stream.push(new File({
+        cwd: "./",
+        base: "./",
+        path: config.svg.sprite,
+        contents: new Buffer(svg)
+    }));
+
+    var cssFile = config.cssFile;
+
+    if (config) {
+        if (config.templates && config.templates.scss) {
+            cssFile = path.extname(cssFile) === ".css" ? cssFile.replace(".css", ".scss") : cssFile;
+        }
+        var tpl = config.templates && config.templates.scss ? temps.scss : temps.css;
+        promises.push(makeFile(tpl, cssFile, stream, data));
+    }
+
+    if (config.preview && config.preview.sprite) {
+        if (config.templates && config.templates.scss) {
+            cssFile = path.extname(cssFile) === ".scss" ? cssFile.replace(".scss", ".css") : cssFile;
+            promises.push(makeFile(temps.css, cssFile, stream, data));
+        }
+        promises.push(makeFile(temps.previewSprite, config.preview.sprite, stream, data));
+    }
   }
 
   makeFile(temps[template], config.svg[template], stream, data).then(function(output) {
