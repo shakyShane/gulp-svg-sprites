@@ -228,8 +228,8 @@ function transformData(data, config, done) {
 
   data.svg = data.svg.map(function(item) {
 
-      item.relHeight = item.height / config.baseSize;
-      item.relWidth  = item.width / config.baseSize;
+      item.relHeight = item.height; //Need removal of the divition function due to the fact that we need the real width to adjust the symbol size
+      item.relWidth  = item.width;
 
       item.relPositionX = item.positionX / config.baseSize - config.padding / config.baseSize;
       item.relPositionY = item.positionY / config.baseSize - config.padding / config.baseSize;
