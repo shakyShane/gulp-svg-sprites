@@ -154,17 +154,17 @@
 
 </head>
 <body>
-{svgInline|s}
+<%= svgInline %>
 <header>
-    <h1 id="logo">Gulp SVG Sprites <small>({svg.length} icons in &lt;symbol&gt; mode)</small></h1>
+    <h1 id="logo">Gulp SVG Sprites <small>(<%= svg.length %> icons in &lt;symbol&gt; mode)</small></h1>
     <h4>Files Generated:</h4>
     <ol>
-        <li><a href="{config.svg.symbols}">{config.svg.symbols}</a></li>
+        <li><a href="<%= config.svg.symbols %>"><%= config.svg.symbols %></a></li>
     </ol>
     <h4>Usage:</h4>
     <ol>
         <li>
-            Include the <strong>contents</strong> of the <a href="{config.svg.symbols}">SVG file</a> just after the opening <code>&lt;body&gt;</code> tag.
+            Include the <strong>contents</strong> of the <a href="<%= config.svg.symbols %>">SVG file</a> just after the opening <code>&lt;body&gt;</code> tag.
         </li>
         <li>
             Paste one of the snippets anywhere into your website.
