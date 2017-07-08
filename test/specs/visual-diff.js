@@ -1,7 +1,7 @@
 var compare = require("img-compare");
 var fs  = require("vinyl-fs");
 var svgSprites = require("../../index");
-var svg2png = require("gulp-svg2png");
+var svg2png = require("gulp-svg2png-fix");
 var filter = require("gulp-filter");
 var assert = require("chai").assert;
 

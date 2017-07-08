@@ -2,7 +2,7 @@ var path      = require('path');
 var gulp      = require('gulp');
 var svgSprite = require('../index'); // replace with gulp-svg-sprites in your project
 var filter    = require('gulp-filter');
-var svg2png   = require('gulp-svg2png');
+var svg2png   = require('gulp-svg2png-fix');
 
 var template = require('fs').readFileSync(path.resolve(__dirname, '../tmpl/sprite.scss'), 'utf-8');
 
