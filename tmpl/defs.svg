@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
     <defs>
       <% _.forEach(svg, function(svgItem) { %>
-        <%= svgItem.data %>
+        <%= svgItem.data.replace(/<svg.*?>/, '<g id="'+ svgItem.name +'">').replace(/<\/svg>/, '</g>') %>
       <% }); %>
-  </defs>
+    </defs>
 </svg>
