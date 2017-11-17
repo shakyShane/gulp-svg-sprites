@@ -187,7 +187,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-<%= svgItem.name %>')">Invert Background</button>
             <div class="snippet-popover" id="snippet-<%= svgItem.name %>">
-                <pre><code>&lt;svg class=&quot;<%= common %> <%= svgItem.name %>&quot;&gt;&lt;use xlink:href=&quot;#<%= svgItem.name %>&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;<%= common %> <%= svgItem.name %>&quot; viewBox=&quot;<%= svgItem.viewBox %>&quot;&gt;&lt;use xlink:href=&quot;#<%= svgItem.name %>&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
