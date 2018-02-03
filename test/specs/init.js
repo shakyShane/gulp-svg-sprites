@@ -3,6 +3,7 @@
 var File       = require("vinyl");
 var assert     = require("chai").assert;
 var svgSprites = require("../../index");
+var path       = require("path");
 /**
  * @param {Stream} stream
  * @param {Function} cb
@@ -52,7 +53,7 @@ module.exports = streamHelper;
  */
 module.exports.streamTester = function (config, expected, done) {
     streamHelper(svgSprites(config), function (data) {
-        assert.deepEqual(Object.keys(data), expected);
+        assert.deepEqual(Object.keys(data), expected.map(function(item){ return path.normalize(item);}));
         done();
     });
 };

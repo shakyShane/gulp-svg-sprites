@@ -1,11 +1,11 @@
-var SpriteData = require("svg-sprite-data");
-var through2   = require("through2");
-var gutil      = require("gulp-util");
-var File       = gutil.File;
-var fs         = require("fs");
-var Q          = require("q");
-var _          = require("lodash");
-var path       = require("path");
+var SpriteData  = require("svg-sprite-data");
+var through2    = require("through2");
+var PluginError = require("plugin-error");
+var Vinyl       = require("vinyl");
+var fs          = require("fs");
+var Q           = require("q");
+var _           = require("lodash");
+var path        = require("path");
 
 var PLUGIN_NAME = "gulp-svg-sprites";
 
@@ -267,7 +267,7 @@ function transformData(data, config, done) {
  * @param msg
  */
 function error(context, msg) {
-  context.emit("error", new gutil.PluginError(PLUGIN_NAME, msg));
+  context.emit("error", new PluginError(PLUGIN_NAME, msg));
 }
 
 /**
@@ -292,7 +292,7 @@ function writeFiles(stream, config, svg, data, cb) {
   // Create SVG sprite
   if (config.mode === "sprite") {
 
-    stream.push(new File({
+    stream.push(new Vinyl({
         cwd:  "./",
         base: "./",
         path: config.svg.sprite,
@@ -362,7 +362,7 @@ function makeFile(template, fileName, stream, data) {
     return deferred.promise;
   }
 
-  stream.push(new File({
+  stream.push(new Vinyl({
       cwd:  "./",
       base: "./",
       path: fileName,
