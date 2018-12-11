@@ -16,3 +16,7 @@ test/fixtures/output
 example-stream.js
 doc/
 diff.png
+npm-debug.log
+package-lock.json
+yarn.lock
+yarn-error.log
