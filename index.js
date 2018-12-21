@@ -1,7 +1,7 @@
 var SpriteData = require("svg-sprite-data");
 var through2   = require("through2");
-var gutil      = require("gulp-util");
-var File       = gutil.File;
+var File       = require("vinyl");
+var PluginError = require("plugin-error");
 var fs         = require("fs");
 var Q          = require("q");
 var _          = require("lodash");
@@ -267,7 +267,7 @@ function transformData(data, config, done) {
  * @param msg
  */
 function error(context, msg) {
-  context.emit("error", new gutil.PluginError(PLUGIN_NAME, msg));
+  context.emit("error", new PluginErrorr(PLUGIN_NAME, msg));
 }
 
 /**
